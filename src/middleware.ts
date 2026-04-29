@@ -5,8 +5,8 @@ import type { NextRequest } from 'next/server';
 const locales = ['en', 'fr', 'es', 'ar', 'hi'];
 const defaultLocale = 'en'; // Язык по умолчанию
 
-// ВАЖНО: Имя функции изменено на proxy
-export function proxy(request: NextRequest) {
+// Функция ОБЯЗАТЕЛЬНО должна называться middleware
+export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // 1. Проверяем, есть ли уже в URL поддерживаемый язык
@@ -22,7 +22,7 @@ export function proxy(request: NextRequest) {
   return NextResponse.redirect(request.nextUrl);
 }
 
-// 3. Конфигурация: указываем Next.js, для каких путей НЕ нужно запускать этот proxy
+// 3. Конфигурация: пропускаем API, системные файлы Next и картинки (включая иконки)
 export const config = {
   matcher: [
     '/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',

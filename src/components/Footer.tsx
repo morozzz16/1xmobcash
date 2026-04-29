@@ -1,0 +1,90 @@
+import React from 'react';
+import Link from 'next/link';
+
+export default function Footer({ langKey, t }: { langKey: string, t: any }) {
+  return (
+    <footer className="bg-[#04060b] border-t border-white/5 pt-16 pb-8">
+      {/* ИЗМЕНЕНО: Добавлен ограничитель max-w-7xl и выровнены отступы */}
+      <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Верхняя часть подвала */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 mb-12">
+          
+          {/* Логотип и описание */}
+          <div className="md:col-span-5 space-y-4">
+            <div className="text-white font-black text-3xl tracking-tighter">
+              1X<span className="text-blue-500">MOBCASH</span>
+            </div>
+            <p className="text-slate-400 text-sm leading-relaxed max-w-sm">
+              {t.footer.description}
+            </p>
+          </div>
+
+          {/* Быстрые ссылки */}
+          <div className="md:col-span-4 space-y-4">
+            <h4 className="text-white font-bold uppercase tracking-wider text-sm mb-4">
+              Legal & Info
+            </h4>
+            <ul className="space-y-3">
+              <li>
+                <Link href={`/${langKey}/terms`} className="text-slate-400 hover:text-blue-400 transition-colors text-sm">
+                  {t.footer.links.terms}
+                </Link>
+              </li>
+              <li>
+                <Link href={`/${langKey}/privacy`} className="text-slate-400 hover:text-blue-400 transition-colors text-sm">
+                  {t.footer.links.privacy}
+                </Link>
+              </li>
+              <li>
+                <Link href={`/${langKey}/cookies`} className="text-slate-400 hover:text-blue-400 transition-colors text-sm">
+                  {t.footer.links.cookies}
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Контакты & Поддержка */}
+          <div className="md:col-span-3 space-y-4">
+            <h4 className="text-white font-bold uppercase tracking-wider text-sm mb-4">
+              Support
+            </h4>
+            <ul className="space-y-3">
+              <li>
+                <a href="mailto:support@1xmobcash.net" className="text-slate-400 hover:text-blue-400 transition-colors text-sm flex items-center gap-2">
+                  <span>✉</span> support@1xmobcash.net
+                </a>
+              </li>
+              <li>
+                <Link href={`/${langKey}/contact`} className="text-slate-400 hover:text-blue-400 transition-colors text-sm">
+                  {t.footer.links.contact}
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Разделитель */}
+        <div className="w-full h-px bg-white/5 mb-8"></div>
+
+        {/* Нижняя часть (Копирайт и 18+) */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+          <p className="text-slate-500 text-xs sm:text-sm text-center md:text-left">
+            {t.footer.rights}
+          </p>
+          
+          {/* Значок 18+ и предупреждение */}
+          <div className="flex items-center gap-3 bg-[#0f172a]/50 border border-white/5 px-4 py-2 rounded-full">
+            <div className="w-8 h-8 rounded-full border-2 border-red-500 flex items-center justify-center font-black text-red-500 text-xs shadow-[0_0_10px_rgba(239,68,68,0.2)]">
+              18+
+            </div>
+            <p className="text-slate-400 text-xs font-medium">
+              {t.footer.warning}
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </footer>
+  );
+}

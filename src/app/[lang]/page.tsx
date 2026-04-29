@@ -7,7 +7,10 @@ import Header from '@/components/Header';
 import HeroForm from '@/components/HeroForm';
 import HowItWorks from '@/components/HowItWorks';
 import Comparison from '@/components/Comparison';
+import FeaturesSEO from '@/components/FeaturesSEO'; // <-- ИМПОРТ 1
+import AudienceSEO from '@/components/AudienceSEO'; // <-- ИМПОРТ 2
 import FAQ from '@/components/FAQ';
+import Footer from '@/components/Footer';
 
 export default function Home() {
   const params = useParams();
@@ -15,7 +18,6 @@ export default function Home() {
   const langKey = (params.lang as keyof typeof dictionaries) || 'en';
   const t = dictionaries[langKey] || dictionaries['en'];
 
-  // Состояние для управления переключением ролей и плавным скроллом
   const [role, setRole] = useState('agent');
 
   const handleRoleSelect = (selectedRole: string) => {
@@ -34,10 +36,12 @@ export default function Home() {
         <HeroForm t={t} role={role} setRole={setRole} />
         <HowItWorks t={t} />
         <Comparison t={t} onSelectRole={handleRoleSelect} />
+        <FeaturesSEO t={t} />
+        <AudienceSEO t={t} />
         <FAQ t={t} />
       </main>
       
-      {/* Здесь будет Footer */}
+      <Footer langKey={langKey as string} t={t} />
     </div>
   );
 }
