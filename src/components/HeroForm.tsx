@@ -15,7 +15,9 @@ function HeroFormContent({ t }: { t: any }) {
   
   const [notification, setNotification] = useState<{type: 'success' | 'error', text: string} | null>(null);
 
-  // Чтение параметра role из URL
+
+  const regions = Array.from(new Set(COUNTRIES.map(c => c.region)));
+
   const searchParams = useSearchParams();
 
   useEffect(() => {
@@ -63,7 +65,8 @@ function HeroFormContent({ t }: { t: any }) {
       return;
     }
 
-    data.full_phone = `${selectedCountry.code} ${data.phone}`;
+    // Если выбрано "Other", кода страны нет, склеиваем аккуратно
+    data.full_phone = selectedCountry.code ? `${selectedCountry.code} ${data.phone}` : data.phone as string;
     data.country = selectedCountry.name;
     data.role = role; // Отправляем выбранную роль в гугл таблицу
 
@@ -99,21 +102,20 @@ function HeroFormContent({ t }: { t: any }) {
 
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center relative z-10">
         
+        {/* Контент слева: Текст, Выбор Роли */}
+        <div className="space-y-8 text-center lg:text-left flex flex-col items-center lg:items-start">
+          <div className="space-y-6 relative z-10">
+            <h1 className="text-4xl lg:text-6xl font-black text-white leading-tight tracking-tight">
+              {t.hero.title}
+            </h1>
+            <p className="text-lg text-slate-300 leading-relaxed lg:max-w-xl">
+              {t.hero.subtitle}
+            </p>
 
-{/* Контент слева: Текст, Выбор Роли */}
-<div className="space-y-8 text-center lg:text-left flex flex-col items-center lg:items-start">
-  <div className="space-y-6 relative z-10">
-    <h1 className="text-4xl lg:text-6xl font-black text-white leading-tight tracking-tight">
-      {t.hero.title}
-    </h1>
-    <p className="text-lg text-slate-300 leading-relaxed lg:max-w-xl">
-      {t.hero.subtitle}
-    </p>
-
-    {/* Быстрый выбор роли */}
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8 w-full max-w-xl">
-      {/* Кнопка Agent */}
-<button 
+            {/* Быстрый выбор роли */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8 w-full max-w-xl">
+              {/* Кнопка Agent */}
+              <button 
                 onClick={() => setRole('agent')}
                 className={`group relative p-6 rounded-2xl border transition-all duration-300 text-left overflow-hidden ${
                   role === 'agent' 
@@ -146,11 +148,9 @@ function HeroFormContent({ t }: { t: any }) {
                   <svg className="w-12 h-12 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
                 </div>
               </button>
-    </div>
-  </div>
+            </div>
+          </div>
   
-
-
           <div className="relative w-full max-w-[280px] sm:max-w-[350px] lg:max-w-[450px] aspect-square mt-8 lg:mt-4 mx-auto lg:mx-0 animate-float">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-blue-600/30 rounded-full blur-[100px] opacity-60"></div>
             
@@ -269,6 +269,8 @@ function HeroFormContent({ t }: { t: any }) {
               
               <div className="space-y-1.5">
                 <label className="text-xs font-bold text-slate-400 uppercase px-1 tracking-wider">{t.form.country}</label>
+                
+                {/* Группировка по регионам */}
                 <div className="relative" ref={dropdownRef}>
                   <button type="button" onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="w-full p-4 bg-[#1e293b]/50 border border-white/10 rounded-2xl flex items-center justify-between hover:bg-[#1e293b] transition-all focus:border-blue-500">
                     <div className="flex items-center gap-3">
@@ -277,13 +279,30 @@ function HeroFormContent({ t }: { t: any }) {
                     </div>
                     <span className="text-slate-400 text-xs">▼</span>
                   </button>
+                  
                   {isDropdownOpen && (
-                    <div className="absolute z-20 top-full mt-2 left-0 w-full bg-[#1e293b] border border-white/10 rounded-2xl shadow-2xl max-h-64 overflow-y-auto p-2">
-                      {COUNTRIES.map((c) => (
-                        <div key={c.iso} onClick={() => { setSelectedCountry(c); setIsDropdownOpen(false); }} className="flex items-center gap-3 p-3 hover:bg-white/5 rounded-xl cursor-pointer transition-colors">
-                          <img src={c.flag} alt="" className="w-6 h-4 object-cover rounded-sm opacity-90" />
-                          <span className="text-sm font-medium text-slate-200">{c.name}</span>
-                          <span className="text-xs font-bold text-slate-400 ml-auto">{c.code}</span>
+                    <div className="absolute z-20 top-full mt-2 left-0 w-full bg-[#1e293b] border border-white/10 rounded-2xl shadow-2xl max-h-64 overflow-y-auto p-2 scrollbar-thin scrollbar-thumb-white/10">
+                      
+                    {/* Отрисовка по группам (регионам) */}
+                      {regions.map(region => (
+                        <div key={region} className="mb-2 last:mb-0 relative">
+                          {/* Заголовок региона (Прижат к краям и верху) */}
+                          <div className="-mx-2 px-4 py-2.5 text-[10px] font-black text-blue-400 uppercase tracking-widest sticky -top-2 bg-[#1e293b] shadow-[0_5px_10px_-5px_rgba(0,0,0,0.3)] z-10 mb-1 border-b border-white/5">
+                            {region}
+                          </div>
+                          
+                          {/* Страны внутри региона */}
+                          {COUNTRIES.filter(c => c.region === region).map((c) => (
+                            <div 
+                              key={c.iso} 
+                              onClick={() => { setSelectedCountry(c); setIsDropdownOpen(false); }} 
+                              className="flex items-center gap-3 p-3 hover:bg-white/5 rounded-xl cursor-pointer transition-colors"
+                            >
+                              <img src={c.flag} alt="" className="w-6 h-4 object-cover rounded-sm opacity-90" />
+                              <span className="text-sm font-medium text-slate-200">{c.name}</span>
+                              {c.code && <span className="text-xs font-bold text-slate-500 ml-auto">{c.code}</span>}
+                            </div>
+                          ))}
                         </div>
                       ))}
                     </div>
@@ -292,7 +311,12 @@ function HeroFormContent({ t }: { t: any }) {
               </div>
 
               <div className="flex items-stretch gap-2 h-[58px]">
-                <div className="bg-[#1e293b] border border-white/10 rounded-2xl px-4 flex items-center justify-center font-bold text-slate-300 min-w-[80px]">{selectedCountry.code}</div>
+                {/* Скрываем блок с кодом, если выбрано "Other" */}
+                {selectedCountry.code && (
+                  <div className="bg-[#1e293b] border border-white/10 rounded-2xl px-4 flex items-center justify-center font-bold text-slate-300 min-w-[80px]">
+                    {selectedCountry.code}
+                  </div>
+                )}
                 <input name="phone" type="tel" placeholder={t.form.phone} required className="flex-1 p-4 bg-[#1e293b]/50 border border-white/10 rounded-2xl outline-none text-white placeholder-slate-400 focus:border-blue-500 transition-all" />
               </div>
 
@@ -339,7 +363,7 @@ function HeroFormContent({ t }: { t: any }) {
   );
 }
 
-// 2. Экспортируем обертку Suspense для Next.js 15
+
 export default function HeroForm({ t }: { t: any }) {
   return (
     <Suspense fallback={<div className="h-screen w-full bg-[#070b14] animate-pulse"></div>}>
