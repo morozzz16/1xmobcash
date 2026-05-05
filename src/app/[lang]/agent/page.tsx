@@ -5,8 +5,9 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 
-export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
-  const langKey = (params.lang as keyof typeof dictionaries) || 'en';
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const { lang } = await params;
+  const langKey = (lang as keyof typeof dictionaries) || 'en';
   const seoData = dictionaries[langKey]?.agentPage || dictionaries['en']?.agentPage;
   const baseUrl = 'https://1xmobcash.net';
 
@@ -16,15 +17,14 @@ export async function generateMetadata({ params }: { params: { lang: string } })
     openGraph: {
       title: seoData?.seoTitle || "Open a 1xBet Betting Shop | MobCash Agent",
       description: seoData?.seoDesc || "Become a local 1xBet cashier. Zero franchise fees, 100% risk-free.",
-      url: `${baseUrl}/${params.lang}/agent`,
+      url: `${baseUrl}/${lang}/agent`,
     },
     alternates: {
-      canonical: `${baseUrl}/${params.lang}/agent`,
+      canonical: `${baseUrl}/${lang}/agent`,
     }
   };
 }
 
-// Расширенный резервный объект
 const defaultAgentPage = {
   badge: "Official Franchise & MobCash",
   title: "Open Your Own ",
@@ -61,8 +61,9 @@ const defaultAgentPage = {
   ctaBtn: "Start Your Business"
 };
 
-export default function AgentPage({ params }: { params: { lang: string } }) {
-  const langKey = (params.lang as keyof typeof dictionaries) || 'en';
+export default async function AgentPage({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  const langKey = (lang as keyof typeof dictionaries) || 'en';
   const t = dictionaries[langKey] || dictionaries['en'];
   const pageT = t?.agentPage || dictionaries['en']?.agentPage || defaultAgentPage;
 
@@ -91,7 +92,8 @@ export default function AgentPage({ params }: { params: { lang: string } }) {
             </p>
             
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-              <Link href={`/${langKey}/?role=agent#registration-form`} className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-black py-4 px-10 rounded-2xl shadow-[0_0_30px_rgba(37,99,235,0.3)] transition-all transform hover:scale-[1.02] active:scale-100 uppercase tracking-widest text-sm text-center">                {pageT.btnApply}
+              <Link href={`/${langKey}/?role=agent#registration-form`} className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-black py-4 px-10 rounded-2xl shadow-[0_0_30px_rgba(37,99,235,0.3)] transition-all transform hover:scale-[1.02] active:scale-100 uppercase tracking-widest text-sm text-center">
+                {pageT.btnApply}
               </Link>
               <a href="#benefits" className="w-full sm:w-auto bg-[#1e293b]/80 hover:bg-[#1e293b] border border-white/10 text-white font-bold py-4 px-10 rounded-2xl transition-all uppercase tracking-widest text-sm text-center">
                 {pageT.btnLearn}
@@ -100,7 +102,7 @@ export default function AgentPage({ params }: { params: { lang: string } }) {
           </div>
         </section>
 
-        {/* 2. STATS BAR (Social Proof / Highlights) */}
+        {/* 2. STATS BAR */}
         <section className="py-12 border-y border-white/5 bg-[#0a0f1c]/50">
           <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-white/5">
@@ -167,7 +169,7 @@ export default function AgentPage({ params }: { params: { lang: string } }) {
           </div>
         </section>
 
-        {/* 4. HOW IT WORKS (Steps) */}
+        {/* 4. HOW IT WORKS */}
         <section className="py-24 bg-[#070b14] border-t border-white/5 relative overflow-hidden">
           <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="text-center mb-20">
@@ -237,7 +239,8 @@ export default function AgentPage({ params }: { params: { lang: string } }) {
           <div className="container max-w-4xl mx-auto px-4 relative z-10 text-center bg-gradient-to-b from-[#0f172a] to-[#0a0f1c] p-12 rounded-[3rem] border border-blue-500/20 shadow-[0_0_50px_rgba(37,99,235,0.1)]">
             <h2 className="text-4xl md:text-5xl font-black text-white mb-6">{pageT.ctaTitle}</h2>
             <p className="text-xl text-slate-400 mb-10">{pageT.ctaSubtitle}</p>
-            <Link href={`/${langKey}/?role=agent#registration-form`} className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-black py-4 px-10 rounded-2xl shadow-[0_0_30px_rgba(37,99,235,0.3)] transition-all transform hover:scale-[1.02] active:scale-100 uppercase tracking-widest text-sm text-center">              {pageT.ctaBtn}
+            <Link href={`/${langKey}/?role=agent#registration-form`} className="inline-block bg-blue-600 hover:bg-blue-500 text-white font-black py-5 px-12 rounded-full transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(37,99,235,0.4)] text-lg uppercase tracking-widest">
+              {pageT.ctaBtn}
             </Link>
           </div>
         </section>

@@ -5,8 +5,9 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 
-export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
-  const langKey = (params.lang as keyof typeof dictionaries) || 'en';
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const { lang } = await params;
+  const langKey = (lang as keyof typeof dictionaries) || 'en';
   const seoData = dictionaries[langKey]?.partnerPage || dictionaries['en']?.partnerPage;
   const baseUrl = 'https://1xmobcash.net';
 
@@ -16,15 +17,14 @@ export async function generateMetadata({ params }: { params: { lang: string } })
     openGraph: {
       title: seoData?.seoTitle || "1xBet Affiliate Partner",
       description: seoData?.seoDesc || "Monetize your traffic with the 1xBet affiliate program.",
-      url: `${baseUrl}/${params.lang}/partner`,
+      url: `${baseUrl}/${lang}/partner`,
     },
     alternates: {
-      canonical: `${baseUrl}/${params.lang}/partner`,
+      canonical: `${baseUrl}/${lang}/partner`,
     }
   };
 }
 
-// Резервный объект стал огромным, чтобы покрыть все новые блоки
 const defaultPartnerPage = {
   badge: "Official Affiliate Program",
   title: "Monetize Your Traffic with ",
@@ -61,8 +61,9 @@ const defaultPartnerPage = {
   ctaBtn: "Register Now"
 };
 
-export default function PartnerPage({ params }: { params: { lang: string } }) {
-  const langKey = (params.lang as keyof typeof dictionaries) || 'en';
+export default async function PartnerPage({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  const langKey = (lang as keyof typeof dictionaries) || 'en';
   const t = dictionaries[langKey] || dictionaries['en'];
   const pageT = t?.partnerPage || dictionaries['en']?.partnerPage || defaultPartnerPage;
 
@@ -91,7 +92,8 @@ export default function PartnerPage({ params }: { params: { lang: string } }) {
             </p>
             
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-              <Link href={`/${langKey}/?role=partner#registration-form`} className="w-full sm:w-auto bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white font-black py-4 px-10 rounded-2xl shadow-[0_0_30px_rgba(16,185,129,0.3)] transition-all transform hover:scale-[1.02] active:scale-100 uppercase tracking-widest text-sm text-center">                {pageT.btnApply}
+              <Link href={`/${langKey}/?role=partner#registration-form`} className="w-full sm:w-auto bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white font-black py-4 px-10 rounded-2xl shadow-[0_0_30px_rgba(16,185,129,0.3)] transition-all transform hover:scale-[1.02] active:scale-100 uppercase tracking-widest text-sm text-center">
+                {pageT.btnApply}
               </Link>
               <a href="#benefits" className="w-full sm:w-auto bg-[#1e293b]/80 hover:bg-[#1e293b] border border-white/10 text-white font-bold py-4 px-10 rounded-2xl transition-all uppercase tracking-widest text-sm text-center">
                 {pageT.btnLearn}
@@ -100,7 +102,7 @@ export default function PartnerPage({ params }: { params: { lang: string } }) {
           </div>
         </section>
 
-        {/* 2. STATS BAR (Social Proof) */}
+        {/* 2. STATS BAR */}
         <section className="py-12 border-y border-white/5 bg-[#0a0f1c]/50">
           <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-white/5">
@@ -133,37 +135,31 @@ export default function PartnerPage({ params }: { params: { lang: string } }) {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {/* Ben 1 */}
               <div className="bg-[#0f172a] p-8 rounded-3xl border border-white/5 hover:border-emerald-500/30 transition-all hover:-translate-y-1">
                 <div className="text-4xl mb-6">📈</div>
                 <h3 className="text-xl font-bold text-white mb-3">{pageT.ben1Title}</h3>
                 <p className="text-slate-400 leading-relaxed">{pageT.ben1Desc}</p>
               </div>
-              {/* Ben 2 */}
               <div className="bg-[#0f172a] p-8 rounded-3xl border border-white/5 hover:border-emerald-500/30 transition-all hover:-translate-y-1">
                 <div className="text-4xl mb-6">💸</div>
                 <h3 className="text-xl font-bold text-white mb-3">{pageT.ben2Title}</h3>
                 <p className="text-slate-400 leading-relaxed">{pageT.ben2Desc}</p>
               </div>
-              {/* Ben 3 */}
               <div className="bg-[#0f172a] p-8 rounded-3xl border border-white/5 hover:border-emerald-500/30 transition-all hover:-translate-y-1">
                 <div className="text-4xl mb-6">📊</div>
                 <h3 className="text-xl font-bold text-white mb-3">{pageT.ben3Title}</h3>
                 <p className="text-slate-400 leading-relaxed">{pageT.ben3Desc}</p>
               </div>
-              {/* Ben 4 */}
               <div className="bg-[#0f172a] p-8 rounded-3xl border border-white/5 hover:border-emerald-500/30 transition-all hover:-translate-y-1">
                 <div className="text-4xl mb-6">🎨</div>
                 <h3 className="text-xl font-bold text-white mb-3">{pageT.ben4Title}</h3>
                 <p className="text-slate-400 leading-relaxed">{pageT.ben4Desc}</p>
               </div>
-              {/* Ben 5 */}
               <div className="bg-[#0f172a] p-8 rounded-3xl border border-white/5 hover:border-emerald-500/30 transition-all hover:-translate-y-1">
                 <div className="text-4xl mb-6">🤝</div>
                 <h3 className="text-xl font-bold text-white mb-3">{pageT.ben5Title}</h3>
                 <p className="text-slate-400 leading-relaxed">{pageT.ben5Desc}</p>
               </div>
-              {/* Ben 6 */}
               <div className="bg-[#0f172a] p-8 rounded-3xl border border-white/5 hover:border-emerald-500/30 transition-all hover:-translate-y-1">
                 <div className="text-4xl mb-6">🔥</div>
                 <h3 className="text-xl font-bold text-white mb-3">{pageT.ben6Title}</h3>
@@ -173,7 +169,7 @@ export default function PartnerPage({ params }: { params: { lang: string } }) {
           </div>
         </section>
 
-        {/* 4. HOW IT WORKS (Steps) */}
+        {/* 4. HOW IT WORKS */}
         <section className="py-24 bg-[#070b14] border-t border-white/5 relative overflow-hidden">
           <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="text-center mb-20">
@@ -182,28 +178,23 @@ export default function PartnerPage({ params }: { params: { lang: string } }) {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
-              {/* Connecting Line for Desktop */}
               <div className="hidden md:block absolute top-12 left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-emerald-500/0 via-emerald-500/30 to-emerald-500/0"></div>
 
-              {/* Step 1 */}
               <div className="relative text-center">
                 <div className="w-24 h-24 mx-auto bg-[#0f172a] rounded-full border-2 border-emerald-500/30 flex items-center justify-center text-3xl mb-6 z-10 relative shadow-[0_0_20px_rgba(16,185,129,0.15)]">📝</div>
                 <h3 className="text-xl font-bold text-white mb-3">{pageT.step1Title}</h3>
                 <p className="text-slate-400 text-sm">{pageT.step1Desc}</p>
               </div>
-              {/* Step 2 */}
               <div className="relative text-center">
                 <div className="w-24 h-24 mx-auto bg-[#0f172a] rounded-full border-2 border-emerald-500/30 flex items-center justify-center text-3xl mb-6 z-10 relative shadow-[0_0_20px_rgba(16,185,129,0.15)]">🎯</div>
                 <h3 className="text-xl font-bold text-white mb-3">{pageT.step2Title}</h3>
                 <p className="text-slate-400 text-sm">{pageT.step2Desc}</p>
               </div>
-              {/* Step 3 */}
               <div className="relative text-center">
                 <div className="w-24 h-24 mx-auto bg-[#0f172a] rounded-full border-2 border-emerald-500/30 flex items-center justify-center text-3xl mb-6 z-10 relative shadow-[0_0_20px_rgba(16,185,129,0.15)]">🚀</div>
                 <h3 className="text-xl font-bold text-white mb-3">{pageT.step3Title}</h3>
                 <p className="text-slate-400 text-sm">{pageT.step3Desc}</p>
               </div>
-              {/* Step 4 */}
               <div className="relative text-center">
                 <div className="w-24 h-24 mx-auto bg-[#0f172a] rounded-full border-2 border-emerald-500/30 flex items-center justify-center text-3xl mb-6 z-10 relative shadow-[0_0_20px_rgba(16,185,129,0.15)]">💰</div>
                 <h3 className="text-xl font-bold text-white mb-3">{pageT.step4Title}</h3>
@@ -248,7 +239,8 @@ export default function PartnerPage({ params }: { params: { lang: string } }) {
           <div className="container max-w-4xl mx-auto px-4 relative z-10 text-center bg-gradient-to-b from-[#0f172a] to-[#0a0f1c] p-12 rounded-[3rem] border border-emerald-500/20 shadow-[0_0_50px_rgba(16,185,129,0.1)]">
             <h2 className="text-4xl md:text-5xl font-black text-white mb-6">{pageT.ctaTitle}</h2>
             <p className="text-xl text-slate-400 mb-10">{pageT.ctaSubtitle}</p>
-            <Link href={`/${langKey}/?role=partner#registration-form`} className="w-full sm:w-auto bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white font-black py-4 px-10 rounded-2xl shadow-[0_0_30px_rgba(16,185,129,0.3)] transition-all transform hover:scale-[1.02] active:scale-100 uppercase tracking-widest text-sm text-center">              {pageT.ctaBtn}
+            <Link href={`/${langKey}/?role=partner#registration-form`} className="inline-block bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-black py-5 px-12 rounded-full transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(16,185,129,0.4)] text-lg uppercase tracking-widest">
+              {pageT.ctaBtn}
             </Link>
           </div>
         </section>

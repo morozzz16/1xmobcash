@@ -2,9 +2,10 @@ import React from 'react';
 import Link from 'next/link';
 
 export default function Footer({ langKey, t }: { langKey: string, t: any }) {
+  const f = t.footer || {};
+
   return (
     <footer className="bg-[#04060b] border-t border-white/5 pt-16 pb-8">
-      {/* ИЗМЕНЕНО: Добавлен ограничитель max-w-7xl и выровнены отступы */}
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Верхняя часть подвала */}
@@ -16,29 +17,29 @@ export default function Footer({ langKey, t }: { langKey: string, t: any }) {
               1X<span className="text-blue-500">MOBCASH</span>
             </div>
             <p className="text-slate-400 text-sm leading-relaxed max-w-sm">
-              {t.footer.description}
+              {f.description}
             </p>
           </div>
 
           {/* Быстрые ссылки */}
           <div className="md:col-span-4 space-y-4">
             <h4 className="text-white font-bold uppercase tracking-wider text-sm mb-4">
-              Legal & Info
+              {f.legalTitle || "Legal & Info"}
             </h4>
             <ul className="space-y-3">
               <li>
                 <Link href={`/${langKey}/terms`} className="text-slate-400 hover:text-blue-400 transition-colors text-sm">
-                  {t.footer.links.terms}
+                  {f.links?.terms || "Terms & Conditions"}
                 </Link>
               </li>
               <li>
                 <Link href={`/${langKey}/privacy`} className="text-slate-400 hover:text-blue-400 transition-colors text-sm">
-                  {t.footer.links.privacy}
+                  {f.links?.privacy || "Privacy Policy"}
                 </Link>
               </li>
               <li>
                 <Link href={`/${langKey}/cookies`} className="text-slate-400 hover:text-blue-400 transition-colors text-sm">
-                  {t.footer.links.cookies}
+                  {f.links?.cookies || "Cookie Policy"}
                 </Link>
               </li>
             </ul>
@@ -47,18 +48,13 @@ export default function Footer({ langKey, t }: { langKey: string, t: any }) {
           {/* Контакты & Поддержка */}
           <div className="md:col-span-3 space-y-4">
             <h4 className="text-white font-bold uppercase tracking-wider text-sm mb-4">
-              Support
+              {f.supportTitle || "Support"}
             </h4>
             <ul className="space-y-3">
               <li>
                 <a href="mailto:support@1xmobcash.net" className="text-slate-400 hover:text-blue-400 transition-colors text-sm flex items-center gap-2">
                   <span>✉</span> support@1xmobcash.net
                 </a>
-              </li>
-              <li>
-                <Link href={`/${langKey}/contact`} className="text-slate-400 hover:text-blue-400 transition-colors text-sm">
-                  {t.footer.links.contact}
-                </Link>
               </li>
             </ul>
           </div>
@@ -70,7 +66,7 @@ export default function Footer({ langKey, t }: { langKey: string, t: any }) {
         {/* Нижняя часть (Копирайт и 18+) */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-slate-500 text-xs sm:text-sm text-center md:text-left">
-            {t.footer.rights}
+            {f.rights}
           </p>
           
           {/* Значок 18+ и предупреждение */}
@@ -79,7 +75,7 @@ export default function Footer({ langKey, t }: { langKey: string, t: any }) {
               18+
             </div>
             <p className="text-slate-400 text-xs font-medium">
-              {t.footer.warning}
+              {f.warning}
             </p>
           </div>
         </div>

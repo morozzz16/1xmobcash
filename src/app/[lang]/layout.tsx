@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
+import AosInit from "@/components/AosInit";
+import { Inter } from "next/font/google";
 import "../globals.css";
+
+const inter = Inter({ 
+  subsets: ['latin'],
+  display: 'swap', 
+});
 
 // Поддерживаемые языки
 const locales = ['en', 'fr', 'es', 'ar', 'hi'];
@@ -9,12 +16,10 @@ export async function generateStaticParams() {
   return locales.map((lang) => ({ lang }));
 }
 
-// Динамическая генерация SEO-метаданных
-export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
-  const lang = params.lang;
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const { lang } = await params;
   const baseUrl = 'https://1xmobcash.net';
 
-  // Словари для заголовков и описаний
   const titles: Record<string, string> = {
     en: "1xMobCash | Official 1xBet Agent & Partner Program",
     fr: "1xMobCash | Programme Officiel d'Agent et Partenaire 1xBet",
@@ -28,10 +33,9 @@ export async function generateMetadata({ params }: { params: { lang: string } })
     fr: "Rejoignez le réseau 1xMobCash. Gagnez des commissions élevées en tant qu'agent ou partenaire 1xBet. Paiements mondiaux.",
     es: "Únete a la red 1xMobCash. Gana altas comisiones como agente o socio afiliado de 1xBet. Pagos globales.",
     ar: "انضم إلى شبكة 1xMobCash. اربح عمولات عالية كوكيل أو شريك تابع لـ 1xBet. مدفوعات عالمية.",
-    hi: "1xMobCash नेटवर्क में शामिल हों। 1xBet एजेंट или पार्टनर के रूप में उच्च कमीशन कमाएं। ग्लोबल पेमेंट।",
+    hi: "1xMobCash नेटवर्क में शामिल हों। 1xBet एजेंट या पार्टनर के रूप में उच्च कमीशन कमाएं। ग्लोबल पेमेंट।",
   };
 
-  // Создаем объект hreflang
   const languages: Record<string, string> = {
     'x-default': `${baseUrl}/en`,
   };
@@ -42,6 +46,14 @@ export async function generateMetadata({ params }: { params: { lang: string } })
   const currentTitle = titles[lang] || titles['en'];
   const currentDesc = descriptions[lang] || descriptions['en'];
 
+  const ogLocales: Record<string, string> = {
+    en: 'en_US',
+    fr: 'fr_FR',
+    es: 'es_ES',
+    ar: 'ar_SA',
+    hi: 'hi_IN'
+  };
+
   return {
     title: currentTitle,
     description: currentDesc,
@@ -49,7 +61,6 @@ export async function generateMetadata({ params }: { params: { lang: string } })
       canonical: `${baseUrl}/${lang}`,
       languages: languages,
     },
-    // Настройки для соцсетей и мессенджеров (Telegram, WhatsApp)
     openGraph: {
       title: currentTitle,
       description: currentDesc,
@@ -57,13 +68,13 @@ export async function generateMetadata({ params }: { params: { lang: string } })
       siteName: '1xMobCash',
       images: [
         {
-          url: `${baseUrl}/og-image.jpg`, // Файл должен лежать в public/og-image.jpg
+          url: `${baseUrl}/og-image.jpg`,
           width: 1200,
           height: 630,
           alt: '1xMobCash Global Partner Network',
         },
       ],
-      locale: lang === 'ar' ? 'ar_AR' : 'en_US',
+      locale: ogLocales[lang] || 'en_US',
       type: 'website',
     },
     twitter: {
@@ -75,20 +86,26 @@ export async function generateMetadata({ params }: { params: { lang: string } })
   };
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }) {
-  // Определяем направление текста (RTL для арабского)
-  const dir = params.lang === 'ar' ? 'rtl' : 'ltr';
+  const { lang } = await params;
+  const dir = lang === 'ar' ? 'rtl' : 'ltr';
 
   return (
-    <html lang={params.lang} dir={dir} className="scroll-smooth">
-      <body className="antialiased bg-[#070b14] text-slate-200">
+    <html lang={lang} dir={dir} className="scroll-smooth">
+      <head>
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+      </head>
+      <body className={`${inter.className} antialiased bg-[#070b14] text-slate-200`}>
+        
         {children}
+
+        <AosInit />
       </body>
     </html>
   );

@@ -1,47 +1,70 @@
-'use client';
-
-import React, { useState } from 'react';
-import { useParams } from 'next/navigation';
+import React from 'react';
+import dynamic from 'next/dynamic';
 import { dictionaries } from '@/lib/dictionaries';
+
+// ПЕРВЫЙ ЭКРАН
 import Header from '@/components/Header';
 import HeroForm from '@/components/HeroForm';
-import HowItWorks from '@/components/HowItWorks';
-import Comparison from '@/components/Comparison';
-import FeaturesSEO from '@/components/FeaturesSEO'; // <-- ИМПОРТ 1
-import AudienceSEO from '@/components/AudienceSEO'; // <-- ИМПОРТ 2
-import FAQ from '@/components/FAQ';
+import HomeStats from '@/components/HomeStats';
 import Footer from '@/components/Footer';
 
-export default function Home() {
-  const params = useParams();
-  
-  const langKey = (params.lang as keyof typeof dictionaries) || 'en';
+// НИЖЕ СКРОЛЛА
+const HowItWorks = dynamic(() => import('@/components/HowItWorks'));
+const Comparison = dynamic(() => import('@/components/Comparison'));
+const FeaturesSEO = dynamic(() => import('@/components/FeaturesSEO'));
+const AudienceSEO = dynamic(() => import('@/components/AudienceSEO'));
+const FAQ = dynamic(() => import('@/components/FAQ'));
+const HomeSeoBlock = dynamic(() => import('@/components/HomeSeoBlock'));
+const HomePayments = dynamic(() => import('@/components/HomePayments'));
+const HomeGeo = dynamic(() => import('@/components/HomeGeo'));
+const HomeBlogWidget = dynamic(() => import('@/components/HomeBlogWidget'));
+const ProfitCalculator = dynamic(() => import('@/components/ProfitCalculator'));
+
+export default async function HomePage({ params }: { params: Promise<{ lang: string }> }) {
+
+  const { lang } = await params;
+  const langKey = (lang as keyof typeof dictionaries) || 'en';
   const t = dictionaries[langKey] || dictionaries['en'];
-
-  const [role, setRole] = useState('agent');
-
-  const handleRoleSelect = (selectedRole: string) => {
-    setRole(selectedRole);
-    const formElement = document.getElementById('registration-form');
-    if (formElement) {
-      formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
 
   return (
     <div className="min-h-screen bg-[#070b14] text-slate-200 font-sans flex flex-col selection:bg-blue-600 selection:text-white">
-      <Header langKey={langKey as string} t={t} />
+      <Header langKey={langKey} t={t} />
       
       <main className="flex-grow">
-        <HeroForm t={t} role={role} setRole={setRole} />
+        <HeroForm langKey={langKey} t={t} />
+        
+        {/* 1. Блок статистики */}
+        <HomeStats t={t} />
+
         <HowItWorks t={t} />
-        <Comparison t={t} onSelectRole={handleRoleSelect} />
+
+        {/* 2. Блок платежных систем */}
+        <HomePayments t={t} />
+
+        <Comparison t={t} />
+        
         <FeaturesSEO t={t} />
+
+        {/* 3. Блок Гео-охвата */}
+        <HomeGeo t={t} />
+
         <AudienceSEO t={t} />
+
+        {/* 4. Блок новостей */}
+        <HomeBlogWidget langKey={langKey} t={t} />
+
+        {/* 4. Калькулятор */}
+        <ProfitCalculator langKey={langKey} t={t} />
+
+        {/* 5. Блок FAQ */}
         <FAQ t={t} />
+
+        {/* 6. Блок SEO */}
+        <HomeSeoBlock t={t} />
+
       </main>
-      
-      <Footer langKey={langKey as string} t={t} />
+
+      <Footer langKey={langKey} t={t} />
     </div>
   );
 }

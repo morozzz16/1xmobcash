@@ -1,76 +1,108 @@
 import React from 'react';
-import type { Metadata } from 'next';
+import Link from 'next/link';
 import { dictionaries } from '@/lib/dictionaries';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Link from 'next/link';
 
-// === 1. ГЕНЕРАЦИЯ SEO МЕТАДАННЫХ (БЕЗОПАСНАЯ ВЕРСИЯ) ===
-export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
-  const langKey = (params.lang as keyof typeof dictionaries) || 'en';
-  const seoData = dictionaries[langKey]?.blogPage || dictionaries['en']?.blogPage;
-  const baseUrl = 'https://1xmobcash.net';
+export default async function BlogIndexPage({ params }: { params: Promise<{ lang: string }> }) {
 
-  return {
-    title: seoData?.seoTitle || "1xMobCash Blog",
-    description: seoData?.seoDesc || "Stay updated with the latest news.",
-    openGraph: {
-      title: seoData?.seoTitle || "1xMobCash Blog",
-      description: seoData?.seoDesc || "Stay updated with the latest news.",
-      url: `${baseUrl}/${params.lang}/blog`,
-    },
-    alternates: {
-      canonical: `${baseUrl}/${params.lang}/blog`,
-    }
-  };
-}
-
-const defaultBlogPage = {
-  badge: "News & Insights",
-  title: "1xMobCash ",
-  titleHighlight: "Blog",
-  subtitle: "Stay updated with the latest news, updates, and strategies for 1xBet agents and affiliate partners.",
-  emptyState: "New articles are coming soon. Stay tuned!",
-  btnBack: "Back to Home"
-};
-
-export default function BlogPage({ params }: { params: { lang: string } }) {
-  const langKey = (params.lang as keyof typeof dictionaries) || 'en';
+  const { lang } = await params;
+  const langKey = (lang as keyof typeof dictionaries) || 'en';
   const t = dictionaries[langKey] || dictionaries['en'];
-  
-  const pageT = t?.blogPage || dictionaries['en']?.blogPage || defaultBlogPage;
+
+  const articles = t.articles || {};
+  const articleEntries = Object.entries(articles);
 
   return (
-    <div className="min-h-screen bg-[#070b14] text-slate-200 font-sans flex flex-col selection:bg-blue-600 selection:text-white">
+    <div className="min-h-screen bg-[#070b14] text-slate-200 font-sans flex flex-col selection:bg-purple-600 selection:text-white">
       <Header langKey={langKey} t={t} />
       
       <main className="flex-grow">
-        <section className="relative w-full pt-20 pb-24 lg:pt-32 overflow-hidden">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-[500px] bg-purple-600/10 blur-[120px] rounded-full pointer-events-none"></div>
+        
+        {/* === HERO-ШАПКА  === */}
+        <section className="relative w-full pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden border-b border-white/5">
           
-          <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-sm font-bold uppercase tracking-wider mb-8">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-4xl h-[400px] bg-purple-600/20 blur-[150px] rounded-full pointer-events-none"></div>
+          <div className="absolute top-0 right-0 w-[40%] h-[300px] bg-fuchsia-600/10 blur-[120px] rounded-full pointer-events-none"></div>
+          <div className="absolute bottom-0 left-[-10%] w-[40%] h-[300px] bg-indigo-600/10 blur-[120px] rounded-full pointer-events-none"></div>
+
+          <div className="container max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            
+            {/* Бейджик */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-sm font-bold uppercase tracking-wider mb-8">
               <span className="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span>
-              {pageT.badge}
+              {t.blogPage?.badge || "Latest Updates & Guides"}
             </div>
             
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight tracking-tight mb-8 max-w-4xl mx-auto">
-              {pageT.title}<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">{pageT.titleHighlight}</span>
+            {/* Заголовок */}
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-8 tracking-tight leading-tight">
+              {t.blogPage?.title} <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-fuchsia-500">{t.blogPage?.titleHighlight}</span>
             </h1>
             
-            <p className="text-lg md:text-xl text-slate-400 leading-relaxed max-w-2xl mx-auto mb-16">
-              {pageT.subtitle}
+            {/* Подзаголовок */}
+            <p className="text-xl md:text-2xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
+              {t.blogPage?.desc || t.blogPage?.subtitle || "Insights, guides, and practical strategies to maximize your iGaming profits."}
             </p>
             
-            <div className="max-w-3xl mx-auto bg-[#0f172a]/50 border border-white/10 rounded-3xl p-12 backdrop-blur-sm">
-              <div className="text-6xl mb-6">✍️</div>
-              <h3 className="text-2xl font-bold text-white mb-4">{pageT.emptyState}</h3>
-              <Link href={`/${langKey}`} className="inline-block mt-4 text-purple-400 hover:text-purple-300 font-bold transition-colors">
-                ← {pageT.btnBack}
-              </Link>
+          </div>
+        </section>
+
+        {/* Сетка со статьями */}
+        <section className="py-24 relative z-10 bg-[#070b14]">
+          <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {articleEntries.map(([slug, article]: [string, any]) => {
+
+                if (!article || !article.meta || !article.header) return null;
+
+                return (
+                  <Link href={`/${langKey}/blog/${slug}`} key={slug} className="group flex flex-col h-full">
+                    
+                    {/* Обложка */}
+                    <div className="h-56 bg-[#0f172a] rounded-t-3xl border-t border-x border-white/5 relative overflow-hidden">
+                      <div 
+                        className="absolute inset-0 bg-cover bg-center opacity-90 group-hover:opacity-100 transition-all duration-500 group-hover:scale-105"
+                        style={{ backgroundImage: `url(${article.meta.ogImage})` }}
+                      ></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f1c] via-transparent to-transparent opacity-80"></div>
+                    </div>
+                    
+                    {/* Текст карточки */}
+                    <div className="bg-[#0a0f1c] p-8 rounded-b-3xl border border-white/5 group-hover:border-purple-500/30 transition-all flex-grow flex flex-col shadow-xl shadow-black/50 relative z-10 -mt-2">
+                      
+                      {/* Теги */}
+                      <div className="flex items-center gap-2 text-xs font-bold text-purple-400 uppercase mb-4 tracking-wider">
+                        <span>{article.header.tag}</span>
+                        <span className="text-slate-600">•</span>
+                        <span className="text-slate-400">{article.header.readTime}</span>
+                      </div>
+                      
+                      {/* Заголовок */}
+                      <h3 className="text-xl md:text-2xl font-bold text-white mb-4 group-hover:text-purple-300 transition-colors leading-snug">
+                        {article.header.title}
+                      </h3>
+                      
+                      {/* Описание */}
+                      <p className="text-slate-400 text-sm line-clamp-3 mb-8 flex-grow">
+                        {article.meta.desc}
+                      </p>
+                      
+                      {/* Кнопка "Читать" */}
+                      <div className="text-purple-500 font-bold text-sm flex items-center gap-2 group-hover:translate-x-2 transition-transform uppercase tracking-widest mt-auto">
+                        {t.homeNew?.blogBtn || "Read Article"} 
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                      </div>
+                    </div>
+                    
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </section>
+
       </main>
 
       <Footer langKey={langKey} t={t} />

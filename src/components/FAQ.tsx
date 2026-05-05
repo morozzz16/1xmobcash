@@ -48,6 +48,8 @@ export default function FAQ({ t }: { t: any }) {
               >
                 <button 
                   onClick={() => toggleFAQ(index)}
+                  aria-expanded={isOpen}
+                  aria-controls={`faq-answer-${index}`}
                   className="w-full text-left px-6 py-5 flex justify-between items-center focus:outline-none"
                 >
                   <span className={`font-bold pr-8 transition-colors ${isOpen ? 'text-blue-400' : 'text-slate-200'}`}>
@@ -59,7 +61,8 @@ export default function FAQ({ t }: { t: any }) {
                 </button>
                 
                 <div 
-                  className={`px-6 overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-48 pb-6 opacity-100' : 'max-h-0 opacity-0'}`}
+                  id={`faq-answer-${index}`}
+                  className={`px-6 overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? 'max-h-[500px] pb-6 opacity-100' : 'max-h-0 opacity-0'}`}
                 >
                   <p className="text-slate-400 leading-relaxed text-sm sm:text-base border-t border-white/5 pt-4">
                     {item.a}

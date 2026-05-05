@@ -8,7 +8,7 @@ export default function HowItWorks({ t }: { t: any }) {
       </h2>
       
       <div className="grid md:grid-cols-3 gap-8 relative">
-        {/* Линия соединения (градиентная) */}
+        {/* Линия */}
         <div className="hidden md:block absolute top-8 left-[16%] right-[16%] h-0.5 bg-gradient-to-r from-blue-900 via-blue-500 to-emerald-900 opacity-40 -z-10"></div>
 
         {/* Шаг 1 */}

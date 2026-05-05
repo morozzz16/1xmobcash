@@ -1,30 +1,35 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-// Наши 5 рабочих языков
+// 5 языков
 const locales = ['en', 'fr', 'es', 'ar', 'hi'];
 const defaultLocale = 'en'; // Язык по умолчанию
 
-// Функция ОБЯЗАТЕЛЬНО должна называться middleware
 export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
+  const { pathname, search } = request.nextUrl;
+  const hostname = request.headers.get('host') || '';
 
-  // 1. Проверяем, есть ли уже в URL поддерживаемый язык
+  // === 1. ЗАЩИТА ОТ WWW (SEO 301 Redirect) ===
+  if (hostname.startsWith('www.')) {
+    const newHost = hostname.replace('www.', '');
+
+    return NextResponse.redirect(`https://${newHost}${pathname}${search}`, 301);
+  }
+
+  // === 2. МАРШРУТИЗАЦИЯ ЯЗЫКОВ ===
   const pathnameHasLocale = locales.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );
 
   if (pathnameHasLocale) return NextResponse.next();
 
-  // 2. Если языка в URL нет, перенаправляем на язык по умолчанию
   request.nextUrl.pathname = `/${defaultLocale}${pathname}`;
   
   return NextResponse.redirect(request.nextUrl);
 }
 
-// 3. Конфигурация: пропускаем API, системные файлы Next и картинки (включая иконки)
 export const config = {
   matcher: [
-    '/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
   ],
 };

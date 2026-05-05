@@ -1,10 +1,13 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
-import { useSearchParams } from 'next/navigation'; // <-- Добавлен импорт для чтения URL
+import React, { useState, useEffect, useRef, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { COUNTRIES } from '@/lib/dictionaries';
 
-export default function HeroForm({ t, role, setRole }: { t: any, role: string, setRole: (val: string) => void }) {
+// 1. Внутренний компонент с формой
+function HeroFormContent({ t }: { t: any }) {
+
+  const [role, setRole] = useState('agent'); 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState(COUNTRIES[0]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -12,19 +15,15 @@ export default function HeroForm({ t, role, setRole }: { t: any, role: string, s
   
   const [notification, setNotification] = useState<{type: 'success' | 'error', text: string} | null>(null);
 
-  // === НОВЫЙ БЛОК: Чтение параметра role из URL ===
+  // Чтение параметра role из URL
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    // Получаем значение ?role=...
     const roleFromUrl = searchParams.get('role');
-    
-    // Если параметр есть и он валидный, переключаем вкладку
     if (roleFromUrl === 'partner' || roleFromUrl === 'agent') {
       setRole(roleFromUrl);
     }
-  }, [searchParams, setRole]);
-  // ===============================================
+  }, [searchParams]);
 
   useEffect(() => {
     fetch('https://ipwho.is/')
@@ -66,7 +65,7 @@ export default function HeroForm({ t, role, setRole }: { t: any, role: string, s
 
     data.full_phone = `${selectedCountry.code} ${data.phone}`;
     data.country = selectedCountry.name;
-    data.role = role;
+    data.role = role; // Отправляем выбранную роль в гугл таблицу
 
     const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbw2pcCmoqkcgKcOwDsEF3eL8P4QFd5bZ6k6Xsw_YSdPwS8MA_ckfLgOctUmysGaJyyA_g/exec';
 
@@ -100,12 +99,57 @@ export default function HeroForm({ t, role, setRole }: { t: any, role: string, s
 
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center relative z-10">
         
-        {/* Контент слева: Текст и 3D Композиция (Все элементы возвращены) */}
-        <div className="space-y-8 text-center lg:text-left flex flex-col items-center lg:items-start">
-          <div className="space-y-6 relative z-10">
-            <h1 className="text-4xl lg:text-6xl font-black text-white leading-tight tracking-tight">{t.hero.title}</h1>
-            <p className="text-lg text-slate-300 leading-relaxed lg:max-w-xl">{t.hero.subtitle}</p>
-          </div>
+
+{/* Контент слева: Текст, Выбор Роли */}
+<div className="space-y-8 text-center lg:text-left flex flex-col items-center lg:items-start">
+  <div className="space-y-6 relative z-10">
+    <h1 className="text-4xl lg:text-6xl font-black text-white leading-tight tracking-tight">
+      {t.hero.title}
+    </h1>
+    <p className="text-lg text-slate-300 leading-relaxed lg:max-w-xl">
+      {t.hero.subtitle}
+    </p>
+
+    {/* Быстрый выбор роли */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8 w-full max-w-xl">
+      {/* Кнопка Agent */}
+<button 
+                onClick={() => setRole('agent')}
+                className={`group relative p-6 rounded-2xl border transition-all duration-300 text-left overflow-hidden ${
+                  role === 'agent' 
+                  ? 'bg-blue-600/20 border-blue-500/50 shadow-[0_0_30px_rgba(37,99,235,0.2)]' 
+                  : 'bg-[#0f172a]/40 border-white/5 hover:border-blue-500/30'
+                }`}
+              >
+                <div className="relative z-10">
+                  <div className="text-blue-400 font-black uppercase tracking-widest text-[10px] mb-2">{t.hero.roleAgent}</div>
+                  <div className="text-white font-bold text-lg">{t.form.agent}</div>
+                </div>
+                <div className="absolute right-4 bottom-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                  <svg className="w-12 h-12 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                </div>
+              </button>
+
+              <button 
+                onClick={() => setRole('partner')}
+                className={`group relative p-6 rounded-2xl border transition-all duration-300 text-left overflow-hidden ${
+                  role === 'partner' 
+                  ? 'bg-purple-600/20 border-purple-500/50 shadow-[0_0_30px_rgba(147,51,234,0.2)]' 
+                  : 'bg-[#0f172a]/40 border-white/5 hover:border-purple-500/30'
+                }`}
+              >
+                <div className="relative z-10">
+                  <div className="text-purple-400 font-black uppercase tracking-widest text-[10px] mb-2">{t.hero.rolePartner}</div>
+                  <div className="text-white font-bold text-lg">{t.form.partner}</div>
+                </div>
+                <div className="absolute right-4 bottom-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                  <svg className="w-12 h-12 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                </div>
+              </button>
+    </div>
+  </div>
+  
+
 
           <div className="relative w-full max-w-[280px] sm:max-w-[350px] lg:max-w-[450px] aspect-square mt-8 lg:mt-4 mx-auto lg:mx-0 animate-float">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-blue-600/30 rounded-full blur-[100px] opacity-60"></div>
@@ -161,22 +205,22 @@ export default function HeroForm({ t, role, setRole }: { t: any, role: string, s
               </div>
             </div>
 
-            {/* ВЕРНУЛИ: Золотая монета 1 */}
+            {/* Золотая монета 1 */}
             <div className="absolute top-[12%] right-[2%] w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-yellow-300 to-yellow-600 rounded-full shadow-[0_0_30px_rgba(202,138,4,0.4)] flex items-center justify-center border-2 border-yellow-200/50 animate-bounce [animation-duration:4s]">
               <span className="text-2xl sm:text-3xl font-black text-yellow-900/80 drop-shadow-sm">$</span>
             </div>
             
-            {/* ВЕРНУЛИ: Фишка казино 1 */}
+            {/* Фишка казино 1 */}
             <div className="absolute bottom-[18%] left-[-3%] w-14 h-14 sm:w-16 sm:h-16 bg-[#0f172a] rounded-full shadow-[0_0_30px_rgba(37,99,235,0.4)] flex items-center justify-center border-4 border-dashed border-blue-500/60 rotate-[15deg] animate-bounce [animation-duration:5s]">
                 <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/5 flex items-center justify-center font-black text-xl text-blue-300">50</div>
             </div>
 
-            {/* ВЕРНУЛИ: Золотая монета 2 */}
+            {/* Золотая монета 2 */}
             <div className="absolute bottom-[28%] right-[10%] w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-yellow-400 to-yellow-700 rounded-full shadow-[0_0_20px_rgba(202,138,4,0.3)] flex items-center justify-center border-2 border-yellow-200/50 rotate-[-10deg]">
               <span className="text-xl font-black text-yellow-900/80 drop-shadow-sm">$</span>
             </div>
 
-            {/* ВЕРНУЛИ: Фишка казино 2 */}
+            {/* Фишка казино 2 */}
             <div className="absolute top-[18%] left-[5%] w-10 h-10 sm:w-12 sm:h-12 bg-[#0f172a] rounded-full shadow-[0_0_20px_rgba(239,68,68,0.3)] flex items-center justify-center border-4 border-dashed border-red-500/40 rotate-[-20deg] animate-pulse">
                 <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white/5 flex items-center justify-center font-black text-lg text-red-200">25</div>
             </div>
@@ -292,5 +336,14 @@ export default function HeroForm({ t, role, setRole }: { t: any, role: string, s
         </div>
       )}
     </section>
+  );
+}
+
+// 2. Экспортируем обертку Suspense для Next.js 15
+export default function HeroForm({ t }: { t: any }) {
+  return (
+    <Suspense fallback={<div className="h-screen w-full bg-[#070b14] animate-pulse"></div>}>
+      <HeroFormContent t={t} />
+    </Suspense>
   );
 }
