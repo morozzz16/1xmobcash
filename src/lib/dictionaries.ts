@@ -173,6 +173,26 @@ export const dictionaries = {
         { q: "Can I combine both models?", a: "Absolutely. You can attract players online as a Partner and simultaneously serve as their local MobCash Agent, maximizing your profit." }
       ]
     },
+
+    notFound: {
+    title: "404",
+    subtitle: "Page Not Found",
+    description: "Oops! The page you are looking for doesn't exist or has been moved.",
+    backHome: "Go Back Home"
+      },
+
+    promo: {
+    promoLink: 'Promo Materials',
+    metaTitle: "1xMobCash | Promo Materials & Banners",
+    metaDescription: "Download high-converting promotional banners for your campaigns. Customize with your unique promo code to attract more players.",
+    title: "Promo Materials",
+    subtitle: "Boost your conversions with our official banners. Enter your promo code, preview, and download instantly.",
+    promoCodeLabel: "Enter Your Promo Code",
+    promoCodePlaceholder: "e.g. MOB1X",
+    downloadBtn: "Download Banner",
+    preview: "Live Preview",
+     },
+
     calculator: {
       title: "Calculate Your Profit",
       subtitle: "See how much you can earn with our high RevShare rates.",
@@ -459,6 +479,26 @@ export const dictionaries = {
         { q: "Puis-je combiner les deux modèles ?", a: "Absolument. Vous pouvez recruter des joueurs en ligne et gérer leurs transactions locales via MobCash pour doubler vos profits." }
       ]
     },
+
+    notFound: {
+      title: "404",
+      subtitle: "Page introuvable",
+      description: "Oups ! La page que vous recherchez n'existe pas ou a été déplacée.",
+      backHome: "Retour à l'accueil"
+    },
+
+    promo: {
+    promoLink: "Matériel Promo",
+    metaTitle: "1xMobCash | Matériel Promo et Bannières",
+    metaDescription: "Téléchargez des bannières promotionnelles à fort taux de conversion pour vos campagnes. Personnalisez-les avec votre code promo unique pour attirer plus de joueurs.",
+    title: "Matériel Promo",
+    subtitle: "Boostez vos conversions avec nos bannières officielles. Entrez votre code promo, prévisualisez et téléchargez instantanément.",
+    promoCodeLabel: "Entrez votre code promo",
+    promoCodePlaceholder: "ex. MOB1X",
+    downloadBtn: "Télécharger la bannière",
+    preview: "Aperçu en direct",
+    },
+
     calculator: {
       title: "Calculez Vos Profits",
       subtitle: "Découvrez combien vous pouvez gagner avec nos taux RevShare élevés.",
@@ -744,6 +784,26 @@ export const dictionaries = {
         { q: "¿Puedo combinar ambos modelos?", a: "Por supuesto. Puedes atraer jugadores online y procesar sus depósitos localmente para maximizar tus ganancias." }
       ]
     },
+
+    notFound: {
+      title: "404",
+      subtitle: "Página no encontrada",
+      description: "¡Ups! La página que buscas no existe o ha sido movida.",
+      backHome: "Volver al inicio"
+    },
+
+    promo: {
+    promoLink: "Material Promocional",
+    metaTitle: "1xMobCash | Material Promocional y Banners",
+    metaDescription: "Descarga banners promocionales de alta conversión para tus campañas. Personalízalos con tu código promocional único para atraer a más jugadores.",
+    title: "Material Promocional",
+    subtitle: "Aumenta tus conversiones con nuestros banners oficiales. Ingresa tu código promocional, obtén una vista previa y descarga al instante.",
+    promoCodeLabel: "Ingresa tu código promocional",
+    promoCodePlaceholder: "ej. MOB1X",
+    downloadBtn: "Descargar Banner",
+    preview: "Vista Previa en Vivo",
+    },
+
     calculator: {
       title: "Calcula Tus Ganancias",
       subtitle: "Mira cuánto puedes ganar con nuestras altas tasas de RevShare.",
@@ -1029,6 +1089,26 @@ export const dictionaries = {
         { q: "هل يمكنني الجمع بين النموذجين؟", a: "بالتأكيد. يمكنك جذب اللاعبين أونلاين ومعالجة إيداعاتهم محلياً لمضاعفة أرباحك." }
       ]
     },
+
+    notFound: {
+      title: "404",
+      subtitle: "الصفحة غير موجودة",
+      description: "عذراً! الصفحة التي تبحث عنها غير موجودة أو تم نقلها.",
+      backHome: "العودة إلى الصفحة الرئيسية"
+    },
+
+    promo: {
+    promoLink: "المواد الترويجية",
+    metaTitle: "1xMobCash | المواد الترويجية واللافتات",
+    metaDescription: "قم بتنزيل لافتات ترويجية عالية التحويل لحملاتك. قم بتخصيصها باستخدام الرمز الترويجي الفريد الخاص بك لجذب المزيد من اللاعبين.",
+    title: "المواد الترويجية",
+    subtitle: "عزز تحويلاتك باستخدام لافتاتنا الرسمية. أدخل الرمز الترويجي الخاص بك، وقم بمعاينته، وتنزيله على الفور.",
+    promoCodeLabel: "أدخل الرمز الترويجي الخاص بك",
+    promoCodePlaceholder: "مثال: MOB1X",
+    downloadBtn: "تنزيل اللافتة",
+    preview: "معاينة مباشرة",
+    },
+
     calculator: {
       title: "احسب أرباحك",
       subtitle: "اكتشف كم يمكنك أن تكسب مع معدلات مشاركة الأرباح العالية لدينا.",
@@ -1316,6 +1396,26 @@ export const dictionaries = {
         { q: "क्या मैं दोनों काम एक साथ कर सकता हूँ?", a: "बिल्कुल। आप ऑनलाइन खिलाड़ी ला सकते हैं और MobCash के माध्यम से उनके लेनदेन संभालकर लाभ बढ़ा सकते हैं।" }
       ]
     },
+
+    notFound: {
+      title: "404",
+      subtitle: "पृष्ठ नहीं मिला",
+      description: "उफ़! आप जो पृष्ठ खोज रहे हैं वह मौजूद नहीं है या हटा दिया गया है।",
+      backHome: "होम पेज पर वापस जाएं"
+    },
+
+    promo: {
+    promoLink: "प्रोमो सामग्री",
+    metaTitle: "1xMobCash | प्रोमो सामग्री और बैनर",
+    metaDescription: "अपने अभियानों के लिए उच्च-रूपांतरण वाले प्रचारात्मक बैनर डाउनलोड करें। अधिक खिलाड़ियों को आकर्षित करने के लिए उन्हें अपने अद्वितीय प्रोमो कोड के साथ अनुकूलित करें।",
+    title: "प्रोमो सामग्री",
+    subtitle: "हमारे आधिकारिक बैनरों के साथ अपने रूपांतरण बढ़ाएं। अपना प्रोमो कोड दर्ज करें, पूर्वावलोकन करें और तुरंत डाउनलोड करें।",
+    promoCodeLabel: "अपना प्रोमो कोड दर्ज करें",
+    promoCodePlaceholder: "उदा. MOB1X",
+    downloadBtn: "बैनर डाउनलोड करें",
+    preview: "लाइव पूर्वावलोकन",
+    },
+
     calculator: {
       title: "अपने लाभ की गणना करें",
       subtitle: "देखें कि आप हमारे उच्च RevShare दरों के साथ कितना कमा सकते हैं।",

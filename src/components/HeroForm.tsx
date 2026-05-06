@@ -154,51 +154,86 @@ function HeroFormContent({ t }: { t: any }) {
           <div className="relative w-full max-w-[280px] sm:max-w-[350px] lg:max-w-[450px] aspect-square mt-8 lg:mt-4 mx-auto lg:mx-0 animate-float">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-blue-600/30 rounded-full blur-[100px] opacity-60"></div>
             
-            {/* Смартфон */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180px] h-[360px] sm:w-[220px] sm:h-[440px] bg-[#0f172a] rounded-[3rem] border-[6px] border-white/10 shadow-[0_0_60px_rgba(37,99,235,0.25)] rotate-[-12deg] flex flex-col p-3 overflow-hidden backdrop-blur-md">
-              <div className="flex-grow w-full bg-[#1e293b]/70 rounded-3xl p-2.5 sm:p-3 flex flex-col gap-2 border border-white/5 relative overflow-hidden">
-                <div className="absolute inset-x-0 top-0 h-[40%] bg-gradient-to-b from-white/5 to-transparent rounded-t-3xl pointer-events-none"></div>
+          {/* Смартфон */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180px] h-[360px] sm:w-[220px] sm:h-[440px] bg-[#0b1120] rounded-[3rem] border-[6px] border-[#1e293b] shadow-[0_0_60px_rgba(37,99,235,0.3)] rotate-[-12deg] flex flex-col p-2.5 sm:p-3 overflow-hidden backdrop-blur-xl">
+              <div className="flex-grow w-full bg-gradient-to-b from-[#1e293b]/80 to-[#0f172a]/90 rounded-3xl p-2.5 sm:p-3 flex flex-col gap-2 sm:gap-2.5 border border-white/5 relative overflow-hidden shadow-inner">
+                {/* Блик на стекле */}
+                <div className="absolute inset-x-0 top-0 h-[40%] bg-gradient-to-b from-blue-400/10 to-transparent rounded-t-3xl pointer-events-none"></div>
+                
+                {/* Шапка 1xBET */}
                 <div className="w-full h-8 flex items-center justify-between px-1 relative z-10">
                   <div className="flex items-center gap-0.5">
-                     <div className="bg-[#2563eb] text-white font-black text-[12px] sm:text-[14px] px-1.5 py-0.5 rounded-sm leading-none tracking-tighter shadow-[0_0_10px_rgba(37,99,235,0.5)]">1x</div>
-                     <span className="text-white font-black text-[14px] sm:text-[16px] tracking-tight leading-none drop-shadow-md">BET</span>
+                     <div className="bg-[#1e3a8a] text-white font-black text-[12px] sm:text-[14px] px-1.5 py-0.5 rounded-sm leading-none tracking-tighter shadow-[0_0_12px_rgba(30,58,138,0.8)] border border-blue-400/20">1xBet</div>
+                     <span className="text-white font-black text-[14px] sm:text-[16px] tracking-tight leading-none drop-shadow-md">PARTNERS</span>
                   </div>
+
+{/*          
                   <div className="flex flex-col gap-[3px] opacity-70">
-                     <div className="w-4 h-[2px] bg-white rounded-full"></div>
-                     <div className="w-4 h-[2px] bg-white rounded-full"></div>
-                     <div className="w-4 h-[2px] bg-white rounded-full"></div>
-                  </div>
+                     <div className="w-4 h-[2px] bg-slate-300 rounded-full"></div>
+                     <div className="w-4 h-[2px] bg-slate-300 rounded-full"></div>
+                     <div className="w-4 h-[2px] bg-slate-300 rounded-full"></div>
+                  </div>     
+  */}                
                 </div>
-                <div className="bg-[#0f172a]/80 rounded-xl p-2 sm:p-3 border border-white/5 relative overflow-hidden shadow-inner mt-1 z-10">
-                  <div className="absolute top-0 right-0 w-16 h-16 bg-emerald-500/10 blur-xl rounded-full"></div>
-                  <div className="text-[8px] sm:text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-1 flex items-center gap-1.5">
-                    <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></div>
-                    Partner Income
+
+                {/* Блок Баланса (Переделан в фирменные синие тона) */}
+                <div className="bg-gradient-to-br from-[#1e293b] to-[#0f172a] rounded-xl p-2.5 sm:p-3 border border-blue-500/20 relative overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.5)] z-10 flex-shrink-0">
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-blue-500/10 blur-2xl rounded-full"></div>
+                  
+                  <div className="text-[8px] sm:text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-0.5 flex items-center gap-1.5">
+                    <div className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse shadow-[0_0_5px_#60a5fa]"></div>
+                    Available for withdrawal
                   </div>
-                  <div className="flex items-end gap-1">
-                    <div className="text-2xl sm:text-3xl font-black text-emerald-400 drop-shadow-[0_0_12px_rgba(16,185,129,0.3)] tracking-tighter">
-                      $14,250<span className="text-emerald-500/60 text-base sm:text-lg">.00</span>
+                  
+                  <div className="flex items-end gap-1 mb-1.5">
+                    <div className="text-2xl sm:text-3xl font-black text-white drop-shadow-[0_0_12px_rgba(255,255,255,0.2)] tracking-tighter">
+                      $14,250<span className="text-blue-400/80 text-base sm:text-lg">.00</span>
                     </div>
                   </div>
-                  <div className="flex gap-1 sm:gap-1.5 mt-2">
-                    <div className="bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-[8px] sm:text-[9px] font-black px-1.5 py-0.5 rounded animate-pulse [animation-duration:2s]">+$150</div>
-                    <div className="bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-[8px] sm:text-[9px] font-black px-1.5 py-0.5 rounded animate-pulse [animation-duration:3s] [animation-delay:0.5s]">+$45</div>
-                    <div className="bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-[8px] sm:text-[9px] font-black px-1.5 py-0.5 rounded animate-pulse [animation-duration:2.5s] [animation-delay:1s]">+$320</div>
+                  
+                  {/* Кнопка вывода (создает желание нажать) */}
+                  <div className="w-full bg-blue-600/20 border border-blue-500/30 text-blue-300 text-[9px] sm:text-[10px] font-black py-1.5 mt-1 rounded-lg flex items-center justify-center gap-1 shadow-[0_0_10px_rgba(37,99,235,0.15)]">
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    WITHDRAW
                   </div>
                 </div>
-                <div className="flex-grow w-full flex flex-col justify-end gap-2 relative z-10 pb-1">
-                  <div className="flex gap-2 mb-1 px-1 justify-center sm:justify-start">
-                     <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-xs sm:text-sm shadow-inner">⚽️</div>
-                     <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-blue-600/10 border border-blue-500/20 flex items-center justify-center text-xs sm:text-sm shadow-inner">🎾</div>
-                     <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-blue-600/10 border border-blue-500/20 flex items-center justify-center text-xs sm:text-sm shadow-inner">🎰</div>
+
+                {/* НОВЫЙ БЛОК: Привлекательная статистика */}
+                <div className="grid grid-cols-2 gap-1.5 sm:gap-2 relative z-10 flex-shrink-0">
+                  <div className="bg-[#0f172a]/60 border border-white/5 rounded-lg p-1.5 sm:p-2 flex flex-col justify-center shadow-inner relative overflow-hidden">
+                    <div className="absolute -right-2 -top-2 w-8 h-8 bg-purple-500/20 blur-xl rounded-full"></div>
+                    <span className="text-[8px] sm:text-[9px] text-slate-400 font-bold uppercase mb-0.5">RevShare</span>
+                    <span className="text-xs sm:text-sm font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Up to 40%</span>
                   </div>
-                  <div className="h-16 sm:h-20 w-full bg-gradient-to-t from-blue-600/20 to-transparent rounded-xl border-t border-blue-400/30 flex items-end p-1.5">
-                     <div className="flex gap-1 w-full items-end h-[90%]">
-                        <div className="flex-1 bg-blue-500/50 h-[35%] rounded-t-sm animate-pulse [animation-delay:0.1s]"></div>
+                  <div className="bg-[#0f172a]/60 border border-white/5 rounded-lg p-1.5 sm:p-2 flex flex-col justify-center shadow-inner relative overflow-hidden">
+                    <div className="absolute -right-2 -top-2 w-8 h-8 bg-cyan-500/20 blur-xl rounded-full"></div>
+                    <span className="text-[8px] sm:text-[9px] text-slate-400 font-bold uppercase mb-0.5">New FTDs</span>
+                    <div className="flex items-center gap-1">
+                      <span className="text-xs sm:text-sm font-black text-white">128</span>
+                      <span className="text-[8px] text-cyan-400 font-bold bg-cyan-400/10 px-1 rounded">↑ 12%</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* График и иконки */}
+                <div className="flex-grow w-full flex flex-col justify-end gap-1.5 sm:gap-2 relative z-10 pb-0.5">
+                  <div className="flex gap-2 mb-0.5 px-1 justify-center sm:justify-start">
+                     <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-[#1e293b] border border-blue-500/20 flex items-center justify-center text-xs sm:text-sm shadow-inner">⚽️</div>
+                     <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-[#1e293b] border border-blue-500/20 flex items-center justify-center text-xs sm:text-sm shadow-inner">🎾</div>
+                     <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-[#1e293b] border border-blue-500/20 flex items-center justify-center text-xs sm:text-sm shadow-inner">🎰</div>
+                  </div>
+                  
+                  {/* Обновленный график в фирменных цветах */}
+                  <div className="h-14 sm:h-16 w-full bg-gradient-to-t from-blue-900/30 to-transparent rounded-xl border-t border-blue-500/20 flex items-end p-1.5 relative overflow-hidden">
+                     <div className="absolute bottom-0 left-0 w-full h-[1px] bg-blue-500/30"></div>
+                     <div className="flex gap-1.5 w-full items-end h-full relative z-10">
+                        <div className="flex-1 bg-blue-600/40 h-[35%] rounded-t-sm animate-pulse [animation-delay:0.1s]"></div>
                         <div className="flex-1 bg-blue-500/50 h-[65%] rounded-t-sm animate-pulse [animation-delay:0.3s]"></div>
-                        <div className="flex-1 bg-blue-500/50 h-[50%] rounded-t-sm animate-pulse [animation-delay:0.5s]"></div>
-                        <div className="flex-1 bg-blue-500/50 h-[90%] rounded-t-sm animate-pulse [animation-delay:0.7s]"></div>
-                        <div className="flex-1 bg-emerald-500/60 h-[100%] rounded-t-sm shadow-[0_0_10px_#10b981] animate-pulse [animation-delay:0.9s]"></div>
+                        <div className="flex-1 bg-blue-400/60 h-[50%] rounded-t-sm animate-pulse [animation-delay:0.5s]"></div>
+                        <div className="flex-1 bg-cyan-500/70 h-[90%] rounded-t-sm animate-pulse [animation-delay:0.7s]"></div>
+                        <div className="flex-1 bg-gradient-to-t from-blue-500 to-cyan-300 h-[100%] rounded-t-sm shadow-[0_0_12px_rgba(34,211,238,0.5)] animate-pulse [animation-delay:0.9s] relative">
+                           <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-white rounded-full shadow-[0_0_5px_#fff]"></div>
+                        </div>
                      </div>
                   </div>
                 </div>

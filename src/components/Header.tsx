@@ -44,9 +44,22 @@ export default function Header({ langKey, t }: { langKey: string, t: any }) {
         
         {/* Десктопная навигация */}
         <nav className="hidden md:flex gap-8 text-sm font-semibold text-slate-400 items-center">
-          <Link href={`/${langKey}/agent`} className="hover:text-white transition-colors">{t.nav.agents}</Link>
-          <Link href={`/${langKey}/partner`} className="hover:text-white transition-colors">{t.nav.partners}</Link>
-          <Link href={`/${langKey}/blog`} className="hover:text-white transition-colors">{t.nav.blog}</Link>
+
+          <Link href={`/${langKey}/agent`} className="hover:text-white transition-colors">
+            {t.nav.agents}
+          </Link>
+            
+          <Link href={`/${langKey}/partner`} className="hover:text-white transition-colors">
+            {t.nav.partners}
+          </Link>
+            
+          <Link href={`/${langKey}/promo`} className="hover:text-white transition-colors">
+            {t.promo.promoLink}
+          </Link>
+            
+          <Link href={`/${langKey}/blog`} className="hover:text-white transition-colors">
+            {t.nav.blog}
+          </Link>
           
           {/* Десктопный переключатель языка */}
           <select 
@@ -83,6 +96,9 @@ export default function Header({ langKey, t }: { langKey: string, t: any }) {
         <nav className="flex flex-col gap-6 text-2xl font-black text-slate-300">
           <Link href={`/${langKey}/agent`} onClick={toggleMenu} className="hover:text-white hover:translate-x-2 transition-all">{t.nav.agents}</Link>
           <Link href={`/${langKey}/partner`} onClick={toggleMenu} className="hover:text-white hover:translate-x-2 transition-all">{t.nav.partners}</Link>
+          
+          <Link href={`/${langKey}/promo`} onClick={toggleMenu} className="hover:text-white hover:translate-x-2 transition-all">{t.promo.promoLink}</Link>
+          
           <Link href={`/${langKey}/blog`} onClick={toggleMenu} className="hover:text-white hover:translate-x-2 transition-all">{t.nav.blog}</Link>
         </nav>
 
