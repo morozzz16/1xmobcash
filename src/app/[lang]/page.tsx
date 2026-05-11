@@ -31,7 +31,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
       <Header langKey={langKey} t={t} />
       
       <main className="flex-grow">
-        <HeroForm langKey={langKey} t={t} />
+        <HeroForm t={t} />
         
         {/* 1. Блок статистики */}
         <HomeStats t={t} />

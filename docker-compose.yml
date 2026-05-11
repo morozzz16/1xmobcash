@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   # Запуск: docker compose --profile prod up -d
   web:
@@ -8,10 +10,22 @@ services:
     container_name: 1xmobcash_web_prod
     restart: always
     profiles: ["prod"]
-    ports:
-      - "3000:3000"
+    # Проброс портов наружу отключен, так как трафик маршрутизируется через Traefik
+    # ports:
+    #   - "3000:3000"
     environment:
       NODE_ENV: production
+    networks:
+      - traefik-public
+    labels:
+      - "traefik.enable=true"
+      # Замени your-domain.com на реальный домен 1xmobcash
+      - "traefik.http.routers.1xmobcash-web.rule=Host(`1xmobcash.net`)"
+      - "traefik.http.routers.1xmobcash-web.entrypoints=websecure"
+      - "traefik.http.routers.1xmobcash-web.tls=true"
+      # Указываем порт, который слушает контейнер внутри
+      - "traefik.http.services.1xmobcash-web.loadbalancer.server.port=3000"
+      - "traefik.docker.network=traefik-public"
 
   # Запуск: docker compose --profile dev up -d
   web-dev:
@@ -24,7 +38,7 @@ services:
       - /app/node_modules # Изолируем зависимости (остается пустым, поэтому нужен npm install в command)
       - /app/.next
     ports:
-      - "3000:3000"
+      - "3000:3000" # В dev-режиме порт остается для прямого локального доступа
     # Сначала ставим пакеты (если их нет), затем запускаем dev-сервер
     command: sh -c "npm install && npm run dev"
     environment:
@@ -34,3 +48,7 @@ services:
       WATCHPACK_POLLING: "true"
       CHOKIDAR_USEPOLLING: "true" # Заставляет файловый наблюдатель работать на Windows
       WDS_SOCKET_PORT: 0
+
+networks:
+  traefik-public:
+    external: true # Сеть должна быть заранее создана контейнером Traefik

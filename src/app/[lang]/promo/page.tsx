@@ -2,12 +2,12 @@ import fs from 'fs';
 import path from 'path';
 import type { Metadata } from "next";
 import { dictionaries } from '@/lib/dictionaries';
-import dynamic from 'next/dynamic'; 
-import Header from "@/components/Header"; 
-import Footer from "@/components/Footer"; 
+import nextDynamic from 'next/dynamic';
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 // === ОТЛОЖЕННАЯ ЗАГРУЗКА КЛИЕНТА ===
-const PromoClient = dynamic(() => import('./PromoClient'), { 
+const PromoClient = nextDynamic(() => import('./PromoClient'), {
   loading: () => (
     <div className="flex flex-col items-center justify-center py-32 opacity-70 animate-pulse">
       <div className="w-12 h-12 border-4 border-blue-500/30 border-t-blue-500 rounded-full animate-spin mb-4"></div>
