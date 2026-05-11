@@ -2,12 +2,13 @@ import fs from 'fs';
 import path from 'path';
 import type { Metadata } from "next";
 import { dictionaries } from '@/lib/dictionaries';
-import dynamic from 'next/dynamic'; 
+import dynamicImport from 'next/dynamic'; 
 import Header from "@/components/Header"; 
 import Footer from "@/components/Footer"; 
 
-// === ОТЛОЖЕННАЯ ЗАГРУЗКА КЛИЕНТА ===
-const PromoClient = dynamic(() => import('./PromoClient'), { 
+// ИСПРАВЛЕНО
+
+const PromoClient = dynamicImport(() => import('./PromoClient'), { 
   loading: () => (
     <div className="flex flex-col items-center justify-center py-32 opacity-70 animate-pulse">
       <div className="w-12 h-12 border-4 border-blue-500/30 border-t-blue-500 rounded-full animate-spin mb-4"></div>
@@ -16,6 +17,7 @@ const PromoClient = dynamic(() => import('./PromoClient'), {
   )
 });
 
+// Отключаем кэширование
 export const dynamic = 'force-dynamic'; 
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
@@ -36,7 +38,7 @@ export default async function PromoPage({ params }: { params: Promise<{ lang: st
   const langKey = (lang as keyof typeof dictionaries) || 'en';
   const t = dictionaries[langKey] || dictionaries['en'];
 
-  // === ПАПКА С БАННЕРАМИ ===
+  // === ЧИТАЕМ ПАПКУ С БАННЕРАМИ ===
   let bannerUrls: string[] = [];
   try {
     const dirPath = path.join(process.cwd(), 'public', 'banners');
