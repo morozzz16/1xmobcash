@@ -67,13 +67,13 @@ export default function Header({ langKey, t }: { langKey: string, t: any }) {
             onChange={(e) => {
               window.location.href = redirectedPathName(e.target.value);
             }} 
-            className="bg-[#1e293b] text-white border border-white/10 rounded-lg px-3 py-1.5 text-sm outline-none cursor-pointer hover:bg-white/10 transition-colors ml-4"
+            className="bg-[#1e293b] text-white border border-white/10 rounded-lg px-3 py-1.5 text-sm outline-none cursor-pointer hover:bg-[#2dd4bf]/10 transition-colors ml-4 focus:ring-2 focus:ring-blue-500/50"
           >
-            <option value="en">EN</option>
-            <option value="fr">FR</option>
-            <option value="es">ES</option>
-            <option value="ar">AR</option>
-            <option value="hi">HI</option>
+            <option value="en" className="bg-[#0f172a] text-white font-semibold py-1">EN</option>
+            <option value="fr" className="bg-[#0f172a] text-white font-semibold py-1">FR</option>
+            <option value="es" className="bg-[#0f172a] text-white font-semibold py-1">ES</option>
+            <option value="ar" className="bg-[#0f172a] text-white font-semibold py-1">AR</option>
+            <option value="hi" className="bg-[#0f172a] text-white font-semibold py-1">HI</option>
           </select>
         </nav>
 

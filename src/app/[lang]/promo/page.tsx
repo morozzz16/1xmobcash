@@ -2,11 +2,20 @@ import fs from 'fs';
 import path from 'path';
 import type { Metadata } from "next";
 import { dictionaries } from '@/lib/dictionaries';
-import PromoClient from "./PromoClient";
+import dynamic from 'next/dynamic'; 
 import Header from "@/components/Header"; 
 import Footer from "@/components/Footer"; 
 
-// Отключаем кэширование
+// === ОТЛОЖЕННАЯ ЗАГРУЗКА КЛИЕНТА ===
+const PromoClient = dynamic(() => import('./PromoClient'), { 
+  loading: () => (
+    <div className="flex flex-col items-center justify-center py-32 opacity-70 animate-pulse">
+      <div className="w-12 h-12 border-4 border-blue-500/30 border-t-blue-500 rounded-full animate-spin mb-4"></div>
+      <p className="text-slate-400 font-bold uppercase tracking-widest text-sm">Loading tools...</p>
+    </div>
+  )
+});
+
 export const dynamic = 'force-dynamic'; 
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
@@ -27,7 +36,7 @@ export default async function PromoPage({ params }: { params: Promise<{ lang: st
   const langKey = (lang as keyof typeof dictionaries) || 'en';
   const t = dictionaries[langKey] || dictionaries['en'];
 
-  // === ЧИТАЕМ ПАПКУ С БАННЕРАМИ ===
+  // === ПАПКА С БАННЕРАМИ ===
   let bannerUrls: string[] = [];
   try {
     const dirPath = path.join(process.cwd(), 'public', 'banners');
@@ -68,8 +77,7 @@ export default async function PromoPage({ params }: { params: Promise<{ lang: st
             </p>
           </div>
 
-          <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-
+          <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 min-h-[400px]">
              <PromoClient t={t} bannerUrls={bannerUrls} />
           </div>
         </section>
