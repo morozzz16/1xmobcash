@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import AosInit from "@/components/AosInit";
 import { Inter } from "next/font/google";
 import "../globals.css";
+import Script from 'next/script';
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -11,7 +12,7 @@ const inter = Inter({
 // Поддерживаемые языки
 const locales = ['en', 'fr', 'es', 'ar', 'hi'];
 
-// Генерация статических параметров для всех языков (SSG)
+// Генерация статических параметров для всех языков
 export async function generateStaticParams() {
   return locales.map((lang) => ({ lang }));
 }
@@ -102,6 +103,22 @@ export default async function RootLayout({
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
       </head>
       <body className={`${inter.className} antialiased bg-[#070b14] text-slate-200`}>
+        
+        {/* === GOOGLE ANALYTICS (Оптимизированная загрузка) === */}
+        <Script 
+          src="https://www.googletagmanager.com/gtag/js?id=G-P03ZKE622P" 
+          strategy="afterInteractive" 
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-P03ZKE622P');
+          `}
+        </Script>
+        {/* ================================================= */}
         
         {children}
 
