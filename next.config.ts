@@ -2,6 +2,7 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   output: 'standalone',
+  
   // Конфигурация webpack нужна только в dev для Hot Reload в Docker
   webpack: (config, { dev }) => {
     if (dev) {
@@ -11,6 +12,20 @@ const nextConfig: NextConfig = {
       };
     }
     return config;
+  },
+
+  async headers() {
+    return [
+      {
+        source: '/(.*\\.(?:jpg|jpeg|png|webp|gif|svg|ico))',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=2592000, must-revalidate',
+          },
+        ],
+      },
+    ];
   },
 };
 

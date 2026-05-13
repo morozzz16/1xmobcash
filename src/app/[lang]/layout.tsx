@@ -100,16 +100,16 @@ export default async function RootLayout({
   return (
     <html lang={lang} dir={dir} className="scroll-smooth">
       <head>
+        <link rel="preconnect" href="https://ipwho.is" crossOrigin="anonymous" />
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
       </head>
       <body className={`${inter.className} antialiased bg-[#070b14] text-slate-200`}>
         
-        {/* === GOOGLE ANALYTICS (Оптимизированная загрузка) === */}
         <Script 
           src="https://www.googletagmanager.com/gtag/js?id=G-P03ZKE622P" 
-          strategy="afterInteractive" 
+          strategy="lazyOnload" 
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="google-analytics" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -118,7 +118,6 @@ export default async function RootLayout({
             gtag('config', 'G-P03ZKE622P');
           `}
         </Script>
-        {/* ================================================= */}
         
         {children}
 
