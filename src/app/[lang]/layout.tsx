@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import AosInit from "@/components/AosInit";
 import { Inter } from "next/font/google";
-// import TelegramWidget from "@/components/TelegramWidget";
+import TelegramWidget from "@/components/TelegramWidget";
 import "../globals.css";
 import Script from 'next/script';
 
@@ -101,19 +101,13 @@ export default async function RootLayout({
   return (
     <html lang={lang} dir={dir} className="scroll-smooth">
       <head>
-<<<<<<< HEAD
         {/* Предварительное подключение к API для ускорения загрузки */}
-=======
->>>>>>> 73c796300e2e253cab1aafffd71fc727071fe82f
         <link rel="preconnect" href="https://ipwho.is" crossOrigin="anonymous" />
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
       </head>
       <body className={`${inter.className} antialiased bg-[#070b14] text-slate-200`}>
         
-<<<<<<< HEAD
         {/* === GOOGLE ANALYTICS (Экстремально ленивая загрузка для PageSpeed) === */}
-=======
->>>>>>> 73c796300e2e253cab1aafffd71fc727071fe82f
         <Script 
           src="https://www.googletagmanager.com/gtag/js?id=G-P03ZKE622P" 
           strategy="lazyOnload" 
@@ -127,14 +121,12 @@ export default async function RootLayout({
             gtag('config', 'G-P03ZKE622P');
           `}
         </Script>
-<<<<<<< HEAD
         {/* =================================================================== */}
-=======
->>>>>>> 73c796300e2e253cab1aafffd71fc727071fe82f
         
         {children}
 
-        {/* <TelegramWidget /> */}
+        {/* Наш плавающий виджет Telegram */}
+        <TelegramWidget />
 
         <AosInit />
       </body>
