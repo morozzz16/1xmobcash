@@ -41,7 +41,7 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ lang
             
             {/* Подзаголовок */}
             <p className="text-xl md:text-2xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
-              {t.blogPage?.desc || t.blogPage?.subtitle || "Insights, guides, and practical strategies to maximize your iGaming profits."}
+              {t.blogPage?.subtitle || "Insights, guides, and practical strategies to maximize your iGaming profits."}
             </p>
             
           </div>

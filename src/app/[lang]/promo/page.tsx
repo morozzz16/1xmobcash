@@ -11,6 +11,11 @@ const PromoClient = dynamic(() => import('./PromoClient'), {
   loading: () => <div className="py-20 text-center text-slate-500 animate-pulse uppercase font-bold">Loading Materials...</div>
 });
 
+<<<<<<< HEAD
+=======
+// ВАЖНО: Мы удалили revalidate = 0; 
+// Теперь Next.js сам прочитает папку во время сборки сайта (build)
+>>>>>>> 73c796300e2e253cab1aafffd71fc727071fe82f
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
