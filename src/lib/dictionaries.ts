@@ -179,7 +179,9 @@ export const dictionaries = {
     subtitle: "Page Not Found",
     description: "Oops! The page you are looking for doesn't exist or has been moved.",
     backHome: "Go Back Home"
-      },
+    },
+
+
 
     promo: {
     promoLink: 'Promo Materials',
@@ -191,6 +193,8 @@ export const dictionaries = {
     promoCodePlaceholder: "e.g. MOB1X",
     downloadBtn: "Download Banner",
     preview: "Live Preview",
+    editorTitle: "Banner Editor",
+    customize: "Customize"
      },
 
     calculator: {
@@ -497,6 +501,8 @@ export const dictionaries = {
     promoCodePlaceholder: "ex. MOB1X",
     downloadBtn: "Télécharger la bannière",
     preview: "Aperçu en direct",
+    editorTitle: "Éditeur de Bannière",
+    customize: "Personnaliser"
     },
 
     calculator: {
@@ -802,6 +808,8 @@ export const dictionaries = {
     promoCodePlaceholder: "ej. MOB1X",
     downloadBtn: "Descargar Banner",
     preview: "Vista Previa en Vivo",
+    editorTitle: "Editor de Banners",
+    customize: "Personalizar"
     },
 
     calculator: {
@@ -1107,6 +1115,8 @@ export const dictionaries = {
     promoCodePlaceholder: "مثال: MOB1X",
     downloadBtn: "تنزيل اللافتة",
     preview: "معاينة مباشرة",
+    editorTitle: "محرر اللافتات",
+    customize: "تخصيص"
     },
 
     calculator: {
@@ -1414,6 +1424,8 @@ export const dictionaries = {
     promoCodePlaceholder: "उदा. MOB1X",
     downloadBtn: "बैनर डाउनलोड करें",
     preview: "लाइव पूर्वावलोकन",
+    editorTitle: "बैनर संपादक",
+    customize: "अनुकूलित करें"
     },
 
     calculator: {

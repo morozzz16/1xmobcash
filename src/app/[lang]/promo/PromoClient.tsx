@@ -10,11 +10,9 @@ export default function PromoClient({ t, bannerUrls = [] }: { t: any, bannerUrls
   const [qrPreview, setQrPreview] = useState<string>('');
   const [downloading, setDownloading] = useState(false);
   
-  // Храним только активный баннер и его настройки
   const [editingBanner, setEditingBanner] = useState<{url: string, w: number, h: number} | null>(null);
   const [config, setConfig] = useState({ x: 50, y: 85, size: 70, rotation: 0, font: 'Impact', color: '#ffffff' });
 
-  // Генерация QR-кода при открытии редактора или смене промокода
   useEffect(() => {
     if (!editingBanner) return;
     const code = promoCode.trim() || 'YOURPROMO';
@@ -23,13 +21,11 @@ export default function PromoClient({ t, bannerUrls = [] }: { t: any, bannerUrls
     }).then(setQrPreview);
   }, [promoCode, editingBanner]);
 
-  // Функция открытия редактора
   const handleOpenEditor = (e: React.MouseEvent<HTMLImageElement>, url: string) => {
     const img = e.currentTarget;
     const w = img.naturalWidth;
     const h = img.naturalHeight;
     
-    // Начальные настройки
     setConfig(prev => ({ ...prev, size: Math.round(w * 0.07) }));
     setEditingBanner({ url, w, h });
   };
@@ -53,7 +49,7 @@ export default function PromoClient({ t, bannerUrls = [] }: { t: any, bannerUrls
       // QR Code
       const qrImg = new Image();
       await new Promise((resolve) => { qrImg.onload = resolve; qrImg.src = qrPreview; });
-      const qSize = editingBanner.w * 0.18; // 18% от ширины баннера
+      const qSize = editingBanner.w * 0.18; 
       const qX = editingBanner.w * 0.78;
       const qY = editingBanner.h * 0.78;
 
@@ -86,31 +82,31 @@ export default function PromoClient({ t, bannerUrls = [] }: { t: any, bannerUrls
 
   return (
     <div className="w-full">
-      {/* СЕТКА БАННЕРОВ */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {bannerUrls.map((url, index) => (
           <div key={url} className="group relative bg-[#0f172a] rounded-3xl overflow-hidden border border-white/5 cursor-pointer shadow-lg aspect-square">
             <img 
               src={url} 
               alt="Banner" 
-              loading={index < 3 ? "eager" : "lazy"} // LCP Оптимизация
+              loading={index < 3 ? "eager" : "lazy"} 
               fetchPriority={index < 3 ? "high" : "auto"}
               onClick={(e) => handleOpenEditor(e, url)}
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
             />
             <div className="absolute inset-0 bg-blue-600/20 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none flex items-center justify-center">
-               <span className="bg-blue-600 text-white px-6 py-2 rounded-full font-bold uppercase text-xs tracking-widest shadow-xl">Customize</span>
+               {/* ИСПРАВЛЕНО: Перевод кнопки Customize */}
+               <span className="bg-blue-600 text-white px-6 py-2 rounded-full font-bold uppercase text-xs tracking-widest shadow-xl">
+                 {t?.promo?.customize || 'Customize'}
+               </span>
             </div>
           </div>
         ))}
       </div>
 
-      {/* РЕДАКТОР (MODAL) */}
       {editingBanner && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/95 backdrop-blur-xl animate-in fade-in duration-300">
           <div className="bg-[#0b1120] border border-white/10 w-full max-w-6xl rounded-[2.5rem] flex flex-col lg:flex-row overflow-hidden shadow-2xl max-h-[90vh]">
             
-            {/* Preview */}
             <div className="w-full lg:w-3/5 p-6 bg-[#070b14] flex items-center justify-center overflow-hidden">
                <div className="relative shadow-2xl w-full" style={{ aspectRatio: `${editingBanner.w}/${editingBanner.h}`, containerType: 'inline-size' }}>
                   <img src={editingBanner.url} className="w-full h-full object-contain" alt="" />
@@ -134,10 +130,12 @@ export default function PromoClient({ t, bannerUrls = [] }: { t: any, bannerUrls
                </div>
             </div>
 
-            {/* Controls */}
             <div className="w-full lg:w-2/5 p-8 lg:p-12 space-y-8 overflow-y-auto bg-[#0b1120]">
               <div className="flex justify-between items-center">
-                <h3 className="text-2xl font-black text-white uppercase tracking-tighter italic">Banner Editor</h3>
+                {/* ИСПРАВЛЕНО: Перевод заголовка Banner Editor */}
+                <h3 className="text-2xl font-black text-white uppercase tracking-tighter italic">
+                  {t?.promo?.editorTitle || 'Banner Editor'}
+                </h3>
                 <button onClick={() => setEditingBanner(null)} className="w-10 h-10 flex items-center justify-center bg-white/5 rounded-full hover:bg-red-500 text-white transition-all">✕</button>
               </div>
 
