@@ -30,7 +30,7 @@ export default function Footer({ langKey, t }: { langKey: string, t: any }) {
               {/* НОВАЯ КНОПКА: MyManager (Футер) */}
               <li>
                 <a 
-                  href="https://my-manager.1xjobs.com/login" 
+                  href="https://my-manager.1xjobs.com/install" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors text-sm font-semibold"

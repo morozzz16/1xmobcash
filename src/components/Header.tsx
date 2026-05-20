@@ -62,7 +62,7 @@ export default function Header({ langKey, t }: { langKey: string, t: any }) {
 
           {/* КНОПКА MyManager (Десктоп) */}
           <a 
-            href="https://my-manager.1xjobs.com/login" 
+            href="https://my-manager.1xjobs.com/install" 
             target="_blank" 
             rel="noopener noreferrer"
             className="flex items-center gap-2 px-3 py-1.5 ml-2 bg-gradient-to-r from-blue-600/20 to-blue-500/10 hover:from-blue-600/40 hover:to-blue-500/20 border border-blue-500/30 rounded-full transition-all group"

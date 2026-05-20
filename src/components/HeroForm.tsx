@@ -15,9 +15,7 @@ function HeroFormContent({ t }: { t: any }) {
   
   const [notification, setNotification] = useState<{type: 'success' | 'error', text: string} | null>(null);
 
-
   const regions = Array.from(new Set(COUNTRIES.map(c => c.region)));
-
   const searchParams = useSearchParams();
 
   useEffect(() => {
@@ -65,10 +63,9 @@ function HeroFormContent({ t }: { t: any }) {
       return;
     }
 
-    // Если выбрано "Other", кода страны нет, склеиваем аккуратно
     data.full_phone = selectedCountry.code ? `${selectedCountry.code} ${data.phone}` : data.phone as string;
     data.country = selectedCountry.name;
-    data.role = role; // Отправляем выбранную роль в гугл таблицу
+    data.role = role; 
 
     const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbw2pcCmoqkcgKcOwDsEF3eL8P4QFd5bZ6k6Xsw_YSdPwS8MA_ckfLgOctUmysGaJyyA_g/exec';
 
@@ -102,7 +99,7 @@ function HeroFormContent({ t }: { t: any }) {
 
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center relative z-10">
         
-        {/* Контент слева: Текст, Выбор Роли */}
+        {/* Контент слева */}
         <div className="space-y-8 text-center lg:text-left flex flex-col items-center lg:items-start">
           <div className="space-y-6 relative z-10">
             <h1 className="text-4xl lg:text-6xl font-black text-white leading-tight tracking-tight">
@@ -112,9 +109,7 @@ function HeroFormContent({ t }: { t: any }) {
               {t.hero.subtitle}
             </p>
 
-            {/* Быстрый выбор роли */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8 w-full max-w-xl">
-              {/* Кнопка Agent */}
               <button 
                 onClick={() => setRole('agent')}
                 className={`group relative p-6 rounded-2xl border transition-all duration-300 text-left overflow-hidden ${
@@ -151,54 +146,38 @@ function HeroFormContent({ t }: { t: any }) {
             </div>
           </div>
   
+          {/* Смартфон (Анимация и графика) */}
           <div className="relative w-full max-w-[280px] sm:max-w-[350px] lg:max-w-[450px] aspect-square mt-8 lg:mt-4 mx-auto lg:mx-0 animate-float">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-blue-600/30 rounded-full blur-[100px] opacity-60"></div>
             
-          {/* Смартфон */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180px] h-[360px] sm:w-[220px] sm:h-[440px] bg-[#0b1120] rounded-[3rem] border-[6px] border-[#1e293b] shadow-[0_0_60px_rgba(37,99,235,0.3)] rotate-[-12deg] flex flex-col p-2.5 sm:p-3 overflow-hidden backdrop-blur-xl">
               <div className="flex-grow w-full bg-gradient-to-b from-[#1e293b]/80 to-[#0f172a]/90 rounded-3xl p-2.5 sm:p-3 flex flex-col gap-2 sm:gap-2.5 border border-white/5 relative overflow-hidden shadow-inner">
-                {/* Блик на стекле */}
                 <div className="absolute inset-x-0 top-0 h-[40%] bg-gradient-to-b from-blue-400/10 to-transparent rounded-t-3xl pointer-events-none"></div>
                 
-                {/* Шапка 1xBET */}
                 <div className="w-full h-8 flex items-center justify-between px-1 relative z-10">
                   <div className="flex items-center gap-0.5">
                      <div className="bg-[#1e3a8a] text-white font-black text-[12px] sm:text-[14px] px-1.5 py-0.5 rounded-sm leading-none tracking-tighter shadow-[0_0_12px_rgba(30,58,138,0.8)] border border-blue-400/20">1xBet</div>
                      <span className="text-white font-black text-[14px] sm:text-[16px] tracking-tight leading-none drop-shadow-md">PARTNERS</span>
                   </div>
-
-{/*          
-                  <div className="flex flex-col gap-[3px] opacity-70">
-                     <div className="w-4 h-[2px] bg-slate-300 rounded-full"></div>
-                     <div className="w-4 h-[2px] bg-slate-300 rounded-full"></div>
-                     <div className="w-4 h-[2px] bg-slate-300 rounded-full"></div>
-                  </div>     
-  */}                
                 </div>
 
-                {/* Блок Баланса (Переделан в фирменные синие тона) */}
                 <div className="bg-gradient-to-br from-[#1e293b] to-[#0f172a] rounded-xl p-2.5 sm:p-3 border border-blue-500/20 relative overflow-hidden shadow-[0_5px_15px_rgba(0,0,0,0.5)] z-10 flex-shrink-0">
                   <div className="absolute top-0 right-0 w-20 h-20 bg-blue-500/10 blur-2xl rounded-full"></div>
-                  
                   <div className="text-[8px] sm:text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-0.5 flex items-center gap-1.5">
                     <div className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse shadow-[0_0_5px_#60a5fa]"></div>
                     Available for withdrawal
                   </div>
-                  
                   <div className="flex items-end gap-1 mb-1.5">
                     <div className="text-2xl sm:text-3xl font-black text-white drop-shadow-[0_0_12px_rgba(255,255,255,0.2)] tracking-tighter">
                       $14,250<span className="text-blue-400/80 text-base sm:text-lg">.00</span>
                     </div>
                   </div>
-                  
-                  {/* Кнопка вывода (создает желание нажать) */}
                   <div className="w-full bg-blue-600/20 border border-blue-500/30 text-blue-300 text-[9px] sm:text-[10px] font-black py-1.5 mt-1 rounded-lg flex items-center justify-center gap-1 shadow-[0_0_10px_rgba(37,99,235,0.15)]">
                     <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                     WITHDRAW
                   </div>
                 </div>
 
-                {/* НОВЫЙ БЛОК: Привлекательная статистика */}
                 <div className="grid grid-cols-2 gap-1.5 sm:gap-2 relative z-10 flex-shrink-0">
                   <div className="bg-[#0f172a]/60 border border-white/5 rounded-lg p-1.5 sm:p-2 flex flex-col justify-center shadow-inner relative overflow-hidden">
                     <div className="absolute -right-2 -top-2 w-8 h-8 bg-purple-500/20 blur-xl rounded-full"></div>
@@ -215,7 +194,6 @@ function HeroFormContent({ t }: { t: any }) {
                   </div>
                 </div>
 
-                {/* График и иконки */}
                 <div className="flex-grow w-full flex flex-col justify-end gap-1.5 sm:gap-2 relative z-10 pb-0.5">
                   <div className="flex gap-2 mb-0.5 px-1 justify-center sm:justify-start">
                      <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-[#1e293b] border border-blue-500/20 flex items-center justify-center text-xs sm:text-sm shadow-inner">⚽️</div>
@@ -223,7 +201,6 @@ function HeroFormContent({ t }: { t: any }) {
                      <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-[#1e293b] border border-blue-500/20 flex items-center justify-center text-xs sm:text-sm shadow-inner">🎰</div>
                   </div>
                   
-                  {/* Обновленный график в фирменных цветах */}
                   <div className="h-14 sm:h-16 w-full bg-gradient-to-t from-blue-900/30 to-transparent rounded-xl border-t border-blue-500/20 flex items-end p-1.5 relative overflow-hidden">
                      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-blue-500/30"></div>
                      <div className="flex gap-1.5 w-full items-end h-full relative z-10">
@@ -240,22 +217,18 @@ function HeroFormContent({ t }: { t: any }) {
               </div>
             </div>
 
-            {/* Золотая монета 1 */}
             <div className="absolute top-[12%] right-[2%] w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-yellow-300 to-yellow-600 rounded-full shadow-[0_0_30px_rgba(202,138,4,0.4)] flex items-center justify-center border-2 border-yellow-200/50 animate-bounce [animation-duration:4s]">
               <span className="text-2xl sm:text-3xl font-black text-yellow-900/80 drop-shadow-sm">$</span>
             </div>
             
-            {/* Фишка казино 1 */}
             <div className="absolute bottom-[18%] left-[-3%] w-14 h-14 sm:w-16 sm:h-16 bg-[#0f172a] rounded-full shadow-[0_0_30px_rgba(37,99,235,0.4)] flex items-center justify-center border-4 border-dashed border-blue-500/60 rotate-[15deg] animate-bounce [animation-duration:5s]">
                 <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/5 flex items-center justify-center font-black text-xl text-blue-300">50</div>
             </div>
 
-            {/* Золотая монета 2 */}
             <div className="absolute bottom-[28%] right-[10%] w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-yellow-400 to-yellow-700 rounded-full shadow-[0_0_20px_rgba(202,138,4,0.3)] flex items-center justify-center border-2 border-yellow-200/50 rotate-[-10deg]">
               <span className="text-xl font-black text-yellow-900/80 drop-shadow-sm">$</span>
             </div>
 
-            {/* Фишка казино 2 */}
             <div className="absolute top-[18%] left-[5%] w-10 h-10 sm:w-12 sm:h-12 bg-[#0f172a] rounded-full shadow-[0_0_20px_rgba(239,68,68,0.3)] flex items-center justify-center border-4 border-dashed border-red-500/40 rotate-[-20deg] animate-pulse">
                 <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-white/5 flex items-center justify-center font-black text-lg text-red-200">25</div>
             </div>
@@ -264,127 +237,147 @@ function HeroFormContent({ t }: { t: any }) {
           </div>
         </div>
 
-        {/* Форма */}
+        {/* ПРАВАЯ КОЛОНКА (КОНТЕЙНЕР ДЕЙСТВИЙ) */}
         <div className="w-full max-w-md mx-auto lg:mx-0 lg:ml-auto relative">
-          <div className="bg-[#0f172a]/80 backdrop-blur-xl border border-white/10 rounded-[2rem] shadow-2xl overflow-hidden p-1 relative z-10">
+          <div className="bg-[#0f172a]/80 backdrop-blur-xl border border-white/10 rounded-[2rem] shadow-2xl overflow-hidden relative z-10">
             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
             
-            {/* Вкладки выбора ролей */}
-            <div className="flex bg-[#050810] p-1.5 m-2 mb-6 rounded-2xl border border-white/10 shadow-inner">
-              <button 
-                type="button" 
-                onClick={() => setRole('agent')} 
-                className={`flex-1 flex items-center justify-center gap-2 py-3.5 text-sm font-black rounded-xl transition-all duration-300 ${role === 'agent' ? 'bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-[0_0_20px_rgba(37,99,235,0.4)] border border-blue-400/50 scale-[1.02]' : 'text-slate-500 hover:text-slate-300'}`}
-              >
-                {role === 'agent' && (
-                  <div className="w-5 h-5 rounded-full bg-rose-500 flex items-center justify-center shadow-[0_0_12px_rgba(244,63,94,0.6)] animate-fade-in-up">
-                    <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7"></path></svg>
-                  </div>
-                )}
-                {t.form.agent}
-              </button>
-              
-              <button 
-                type="button" 
-                onClick={() => setRole('partner')} 
-                className={`flex-1 flex items-center justify-center gap-2 py-3.5 text-sm font-black rounded-xl transition-all duration-300 ${role === 'partner' ? 'bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-[0_0_20px_rgba(37,99,235,0.4)] border border-blue-400/50 scale-[1.02]' : 'text-slate-500 hover:text-slate-300'}`}
-              >
-                {role === 'partner' && (
-                  <div className="w-5 h-5 rounded-full bg-rose-500 flex items-center justify-center shadow-[0_0_12px_rgba(244,63,94,0.6)] animate-fade-in-up">
-                    <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7"></path></svg>
-                  </div>
-                )}
-                {t.form.partner}
-              </button>
-            </div>
-            
-            <form onSubmit={handleSubmit} className="p-5 sm:p-7 pt-2 space-y-4">
-              <input name="name" type="text" placeholder={t.form.name} required className="w-full p-4 bg-[#1e293b]/50 border border-white/10 rounded-2xl outline-none text-white placeholder-slate-400 focus:border-blue-500 transition-all" />
-              <input name="email" type="email" placeholder={t.form.email} required className="w-full p-4 bg-[#1e293b]/50 border border-white/10 rounded-2xl outline-none text-white placeholder-slate-400 focus:border-blue-500 transition-all" />
-              
-              <div className="space-y-1.5">
-                <label className="text-xs font-bold text-slate-400 uppercase px-1 tracking-wider">{t.form.country}</label>
-                
-                {/* Группировка по регионам */}
-                <div className="relative" ref={dropdownRef}>
-                  <button type="button" onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="w-full p-4 bg-[#1e293b]/50 border border-white/10 rounded-2xl flex items-center justify-between hover:bg-[#1e293b] transition-all focus:border-blue-500">
-                    <div className="flex items-center gap-3">
-                      <img src={selectedCountry.flag} alt="" className="w-6 h-4 object-cover rounded-sm shadow-sm opacity-90" />
-                      <span className="font-semibold text-white">{selectedCountry.name}</span>
+            {/* 1. ГЛАВНОЕ ДЕЙСТВИЕ: БЛОК MYMANAGER (FAST TRACK) */}
+            <div className="p-2 pb-0">
+              <div className="bg-gradient-to-br from-blue-600/20 to-[#0f172a] border border-blue-500/30 rounded-2xl p-5 sm:p-6 relative overflow-hidden group">
+                <div className="absolute inset-0 bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-1 bg-blue-500 shadow-[0_0_20px_rgba(37,99,235,1)]"></div>
+
+                <div className="flex items-center gap-4 relative z-10 mb-4">
+                  <img src="/images/mymanager/pwa-192x192.png" alt="MyManager" className="w-14 h-14 rounded-xl shadow-[0_5px_15px_rgba(0,0,0,0.5)] border border-white/10 group-hover:scale-105 transition-transform" />
+                  <div className="text-left">
+                    <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-400 text-[9px] font-black uppercase tracking-widest mb-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
+                      {t.form?.recommended || "Recommended"}
                     </div>
-                    <span className="text-slate-400 text-xs">▼</span>
-                  </button>
-                  
-                  {isDropdownOpen && (
-                    <div className="absolute z-20 top-full mt-2 left-0 w-full bg-[#1e293b] border border-white/10 rounded-2xl shadow-2xl max-h-64 overflow-y-auto p-2 scrollbar-thin scrollbar-thumb-white/10">
-                      
-                    {/* Отрисовка по группам (регионам) */}
-                      {regions.map(region => (
-                        <div key={region} className="mb-2 last:mb-0 relative">
-                          {/* Заголовок региона (Прижат к краям и верху) */}
-                          <div className="-mx-2 px-4 py-2.5 text-[10px] font-black text-blue-400 uppercase tracking-widest sticky -top-2 bg-[#1e293b] shadow-[0_5px_10px_-5px_rgba(0,0,0,0.3)] z-10 mb-1 border-b border-white/5">
-                            {region}
-                          </div>
-                          
-                          {/* Страны внутри региона */}
-                          {COUNTRIES.filter(c => c.region === region).map((c) => (
-                            <div 
-                              key={c.iso} 
-                              onClick={() => { setSelectedCountry(c); setIsDropdownOpen(false); }} 
-                              className="flex items-center gap-3 p-3 hover:bg-white/5 rounded-xl cursor-pointer transition-colors"
-                            >
-                              <img src={c.flag} alt="" className="w-6 h-4 object-cover rounded-sm opacity-90" />
-                              <span className="text-sm font-medium text-slate-200">{c.name}</span>
-                              {c.code && <span className="text-xs font-bold text-slate-500 ml-auto">{c.code}</span>}
+                    <h3 className="text-lg font-black text-white leading-tight">MyManager App</h3>
+                  </div>
+                </div>
+
+                <p className="text-xs text-slate-300 mb-5 text-left leading-relaxed relative z-10">
+                  {t.form?.mymanagerSubtitle || "The fastest and most secure way to start working. 100% protection against scammers."}
+                </p>
+
+                <a href="https://my-manager.1xjobs.com/login" target="_blank" rel="noopener noreferrer" className="relative z-10 w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-black py-3.5 rounded-xl shadow-[0_5px_20px_rgba(37,99,235,0.4)] transition-all hover:scale-[1.02]">
+                  {t.form?.mymanagerBtn || "OPEN SECURE APP"}
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path></svg>
+                </a>
+              </div>
+            </div>
+
+            {/* 2. ПСИХОЛОГИЧЕСКИЙ РАЗДЕЛИТЕЛЬ */}
+            <div className="flex items-center gap-4 px-6 py-4 opacity-40">
+              <div className="h-px flex-1 bg-white/20"></div>
+              <span className="text-[10px] font-bold text-slate-300 uppercase tracking-widest text-center leading-none">
+                {t.form?.orManual || "OR APPLY MANUALLY"}
+              </span>
+              <div className="h-px flex-1 bg-white/20"></div>
+            </div>
+
+            {/* 3. ВТОРИЧНОЕ ДЕЙСТВИЕ: СТАРАЯ ФОРМА */}
+            <div className="px-2 pb-2">
+              <div className="flex bg-[#050810] p-1.5 mb-4 rounded-2xl border border-white/5 shadow-inner">
+                <button 
+                  type="button" 
+                  onClick={() => setRole('agent')} 
+                  className={`flex-1 flex items-center justify-center gap-2 py-2.5 text-xs font-black rounded-xl transition-all duration-300 ${role === 'agent' ? 'bg-[#1e293b] text-white shadow-md border border-white/10' : 'text-slate-500 hover:text-slate-300'}`}
+                >
+                  {t.form.agent}
+                </button>
+                <button 
+                  type="button" 
+                  onClick={() => setRole('partner')} 
+                  className={`flex-1 flex items-center justify-center gap-2 py-2.5 text-xs font-black rounded-xl transition-all duration-300 ${role === 'partner' ? 'bg-[#1e293b] text-white shadow-md border border-white/10' : 'text-slate-500 hover:text-slate-300'}`}
+                >
+                  {t.form.partner}
+                </button>
+              </div>
+              
+              <form onSubmit={handleSubmit} className="px-2 pb-4 space-y-3">
+                <input name="name" type="text" placeholder={t.form.name} required className="w-full p-3.5 bg-[#1e293b]/30 border border-white/5 rounded-xl outline-none text-white text-sm placeholder-slate-500 focus:border-slate-400 transition-all" />
+                <input name="email" type="email" placeholder={t.form.email} required className="w-full p-3.5 bg-[#1e293b]/30 border border-white/5 rounded-xl outline-none text-white text-sm placeholder-slate-500 focus:border-slate-400 transition-all" />
+                
+                <div className="space-y-1">
+                  <label className="text-[10px] font-bold text-slate-500 uppercase px-1 tracking-wider">{t.form.country}</label>
+                  <div className="relative" ref={dropdownRef}>
+                    <button type="button" onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="w-full p-3.5 bg-[#1e293b]/30 border border-white/5 rounded-xl flex items-center justify-between hover:bg-[#1e293b]/50 transition-all text-sm">
+                      <div className="flex items-center gap-3">
+                        <img src={selectedCountry.flag} alt="" className="w-5 h-3.5 object-cover rounded-[2px] opacity-80" />
+                        <span className="font-semibold text-slate-300">{selectedCountry.name}</span>
+                      </div>
+                      <span className="text-slate-500 text-xs">▼</span>
+                    </button>
+                    
+                    {isDropdownOpen && (
+                      <div className="absolute z-20 top-full mt-1 left-0 w-full bg-[#0f172a] border border-white/10 rounded-xl shadow-2xl max-h-56 overflow-y-auto p-1.5 scrollbar-thin scrollbar-thumb-white/10">
+                        {regions.map(region => (
+                          <div key={region} className="mb-2 last:mb-0 relative">
+                            <div className="-mx-1.5 px-3 py-2 text-[9px] font-black text-slate-400 uppercase tracking-widest sticky -top-1.5 bg-[#0f172a] shadow-sm z-10 mb-1 border-b border-white/5">
+                              {region}
                             </div>
-                          ))}
-                        </div>
-                      ))}
+                            {COUNTRIES.filter(c => c.region === region).map((c) => (
+                              <div 
+                                key={c.iso} 
+                                onClick={() => { setSelectedCountry(c); setIsDropdownOpen(false); }} 
+                                className="flex items-center gap-3 p-2.5 hover:bg-white/5 rounded-lg cursor-pointer transition-colors"
+                              >
+                                <img src={c.flag} alt="" className="w-5 h-3.5 object-cover rounded-[2px] opacity-80" />
+                                <span className="text-xs font-medium text-slate-300">{c.name}</span>
+                                {c.code && <span className="text-[10px] font-bold text-slate-600 ml-auto">{c.code}</span>}
+                              </div>
+                            ))}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div className="flex items-stretch gap-2">
+                  {selectedCountry.code && (
+                    <div className="bg-[#1e293b]/50 border border-white/5 rounded-xl px-3 flex items-center justify-center font-bold text-slate-400 text-sm min-w-[70px]">
+                      {selectedCountry.code}
                     </div>
                   )}
-                </div>
-              </div>
-
-              <div className="flex items-stretch gap-2 h-[58px]">
-                {/* Скрываем блок с кодом, если выбрано "Other" */}
-                {selectedCountry.code && (
-                  <div className="bg-[#1e293b] border border-white/10 rounded-2xl px-4 flex items-center justify-center font-bold text-slate-300 min-w-[80px]">
-                    {selectedCountry.code}
-                  </div>
-                )}
-                <input name="phone" type="tel" placeholder={t.form.phone} required className="flex-1 p-4 bg-[#1e293b]/50 border border-white/10 rounded-2xl outline-none text-white placeholder-slate-400 focus:border-blue-500 transition-all" />
-              </div>
-
-              <div className="space-y-3 pt-2">
-                <div className="relative flex items-center bg-[#1e293b]/50 border border-white/10 rounded-2xl overflow-hidden focus-within:border-blue-500 transition-all">
-                  <div className="bg-[#2AABEE]/20 text-[#2AABEE] px-4 py-4 flex items-center justify-center gap-2 border-r border-white/5 font-semibold text-sm w-[140px] shrink-0">
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.548.223l.188-2.85 5.18-4.68c.223-.198-.054-.31-.346-.11l-6.4 4.02-2.76-.89c-.6-.188-.61-.593.125-.89l10.816-4.17c.5-.188.945.105.808.89z"/></svg>
-                    Telegram
-                  </div>
-                  <div className="text-slate-400 pl-3 font-bold">@</div>
-                  <input name="telegram" type="text" placeholder="username" className="w-full py-4 pr-4 bg-transparent outline-none text-white placeholder-slate-500" />
+                  <input name="phone" type="tel" placeholder={t.form.phone} required className="flex-1 p-3.5 bg-[#1e293b]/30 border border-white/5 rounded-xl outline-none text-white text-sm placeholder-slate-500 focus:border-slate-400 transition-all" />
                 </div>
 
-                <div className="relative flex items-center bg-[#1e293b]/50 border border-white/10 rounded-2xl overflow-hidden focus-within:border-emerald-500 transition-all">
-                  <div className="bg-[#25D366]/20 text-[#25D366] px-4 py-4 flex items-center justify-center gap-2 border-r border-white/5 font-semibold text-sm w-[140px] shrink-0">
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                    WhatsApp
+                <div className="space-y-2 pt-1">
+                  <div className="relative flex items-center bg-[#1e293b]/30 border border-white/5 rounded-xl overflow-hidden focus-within:border-blue-500/50 transition-all">
+                    <div className="bg-[#2AABEE]/10 text-[#2AABEE] px-3 py-3 flex items-center justify-center gap-2 border-r border-white/5 font-semibold text-xs w-[120px] shrink-0">
+                      <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.548.223l.188-2.85 5.18-4.68c.223-.198-.054-.31-.346-.11l-6.4 4.02-2.76-.89c-.6-.188-.61-.593.125-.89l10.816-4.17c.5-.188.945.105.808.89z"/></svg>
+                      Telegram
+                    </div>
+                    <div className="text-slate-500 pl-3 font-bold text-sm">@</div>
+                    <input name="telegram" type="text" placeholder="username" className="w-full py-3 pr-3 text-sm bg-transparent outline-none text-white placeholder-slate-600" />
                   </div>
-                  <div className="text-slate-400 pl-3 font-bold">+</div>
-                  <input name="whatsapp" type="text" placeholder="1234567890" className="w-full py-4 pr-4 bg-transparent outline-none text-white placeholder-slate-500" />
-                </div>
-              </div>
 
-              <button disabled={isSubmitting} className="w-full bg-gradient-to-r from-emerald-500 to-emerald-400 hover:from-emerald-400 hover:to-emerald-300 text-slate-900 font-black py-5 rounded-2xl shadow-[0_0_20px_rgba(16,185,129,0.3)] transition-all transform hover:scale-[1.02] active:scale-100 uppercase tracking-widest text-sm mt-4 disabled:opacity-70 disabled:scale-100">
-                {isSubmitting ? t.form.processing : t.form.button}
-              </button>
-            </form>
+                  <div className="relative flex items-center bg-[#1e293b]/30 border border-white/5 rounded-xl overflow-hidden focus-within:border-emerald-500/50 transition-all">
+                    <div className="bg-[#25D366]/10 text-[#25D366] px-3 py-3 flex items-center justify-center gap-2 border-r border-white/5 font-semibold text-xs w-[120px] shrink-0">
+                      <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                      WhatsApp
+                    </div>
+                    <div className="text-slate-500 pl-3 font-bold text-sm">+</div>
+                    <input name="whatsapp" type="text" placeholder="1234567890" className="w-full py-3 pr-3 text-sm bg-transparent outline-none text-white placeholder-slate-600" />
+                  </div>
+                </div>
+
+                {/* ВИЗУАЛЬНО ДЕГРАДИРОВАННАЯ КНОПКА (Demoted Button) */}
+                <button disabled={isSubmitting} className="w-full bg-[#1e293b] hover:bg-[#334155] border border-white/5 text-slate-300 hover:text-white font-black py-4 rounded-xl transition-all uppercase tracking-widest text-[11px] mt-2 disabled:opacity-70 flex items-center justify-center gap-2">
+                  {isSubmitting ? t.form.processing : (t.form?.submitManual || "Submit Manual Request")}
+                </button>
+              </form>
+            </div>
           </div>
         </div>
 
       </div>
 
-      {/* Уведомление */}
       {notification && (
         <div className="fixed bottom-6 right-6 z-[100] animate-fade-in-up">
           <div className={`px-6 py-4 rounded-2xl shadow-2xl border backdrop-blur-xl flex items-center gap-4 ${
@@ -397,7 +390,6 @@ function HeroFormContent({ t }: { t: any }) {
     </section>
   );
 }
-
 
 export default function HeroForm({ t }: { t: any }) {
   return (
