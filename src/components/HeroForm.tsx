@@ -46,6 +46,23 @@ function HeroFormContent({ t }: { t: any }) {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  // НОВАЯ ФУНКЦИЯ ДЛЯ ПЛАВНОГО СКРОЛЛА
+  const handleRoleSelect = (selectedRole: string) => {
+    setRole(selectedRole);
+    
+    // Скроллим только на мобильных устройствах (ширина экрана < 1024px)
+    if (window.innerWidth < 1024) {
+      setTimeout(() => {
+        const element = document.getElementById('action-container');
+        if (element) {
+          // Вычисляем позицию элемента и отнимаем 80px для шапки (header)
+          const y = element.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }, 50); // Минимальная задержка, чтобы React успел обновить состояние
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -111,7 +128,7 @@ function HeroFormContent({ t }: { t: any }) {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8 w-full max-w-xl">
               <button 
-                onClick={() => setRole('agent')}
+                onClick={() => handleRoleSelect('agent')}
                 className={`group relative p-6 rounded-2xl border transition-all duration-300 text-left overflow-hidden ${
                   role === 'agent' 
                   ? 'bg-blue-600/20 border-blue-500/50 shadow-[0_0_30px_rgba(37,99,235,0.2)]' 
@@ -128,7 +145,7 @@ function HeroFormContent({ t }: { t: any }) {
               </button>
 
               <button 
-                onClick={() => setRole('partner')}
+                onClick={() => handleRoleSelect('partner')}
                 className={`group relative p-6 rounded-2xl border transition-all duration-300 text-left overflow-hidden ${
                   role === 'partner' 
                   ? 'bg-purple-600/20 border-purple-500/50 shadow-[0_0_30px_rgba(147,51,234,0.2)]' 
@@ -238,7 +255,7 @@ function HeroFormContent({ t }: { t: any }) {
         </div>
 
         {/* ПРАВАЯ КОЛОНКА (КОНТЕЙНЕР ДЕЙСТВИЙ) */}
-        <div className="w-full max-w-md mx-auto lg:mx-0 lg:ml-auto relative">
+        <div id="action-container" className="w-full max-w-md mx-auto lg:mx-0 lg:ml-auto relative">
           <div className="bg-[#0f172a]/80 backdrop-blur-xl border border-white/10 rounded-[2rem] shadow-2xl overflow-hidden relative z-10">
             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
             

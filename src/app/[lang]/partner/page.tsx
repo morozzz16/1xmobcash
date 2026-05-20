@@ -65,7 +65,9 @@ export default async function PartnerPage({ params }: { params: Promise<{ lang: 
   const { lang } = await params;
   const langKey = (lang as keyof typeof dictionaries) || 'en';
   const t = dictionaries[langKey] || dictionaries['en'];
-  const pageT = t?.partnerPage || dictionaries['en']?.partnerPage || defaultPartnerPage;
+  
+  // Добавлено :any для безопасной сборки
+  const pageT: any = t?.partnerPage || dictionaries['en']?.partnerPage || defaultPartnerPage;
 
   return (
     <div className="min-h-screen bg-[#070b14] text-slate-200 font-sans flex flex-col selection:bg-emerald-600 selection:text-white">
@@ -92,9 +94,10 @@ export default async function PartnerPage({ params }: { params: Promise<{ lang: 
             </p>
             
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-              <Link href={`/${langKey}/?role=partner#registration-form`} className="w-full sm:w-auto bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white font-black py-4 px-10 rounded-2xl shadow-[0_0_30px_rgba(16,185,129,0.3)] transition-all transform hover:scale-[1.02] active:scale-100 uppercase tracking-widest text-sm text-center">
+              {/* Изменена ссылка на action-container */}
+              <a href={`/${langKey}/?role=partner#action-container`} className="w-full sm:w-auto bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white font-black py-4 px-10 rounded-2xl shadow-[0_0_30px_rgba(16,185,129,0.3)] transition-all transform hover:scale-[1.02] active:scale-100 uppercase tracking-widest text-sm text-center">
                 {pageT.btnApply}
-              </Link>
+              </a>
               <a href="#benefits" className="w-full sm:w-auto bg-[#1e293b]/80 hover:bg-[#1e293b] border border-white/10 text-white font-bold py-4 px-10 rounded-2xl transition-all uppercase tracking-widest text-sm text-center">
                 {pageT.btnLearn}
               </a>
@@ -239,9 +242,10 @@ export default async function PartnerPage({ params }: { params: Promise<{ lang: 
           <div className="container max-w-4xl mx-auto px-4 relative z-10 text-center bg-gradient-to-b from-[#0f172a] to-[#0a0f1c] p-12 rounded-[3rem] border border-emerald-500/20 shadow-[0_0_50px_rgba(16,185,129,0.1)]">
             <h2 className="text-4xl md:text-5xl font-black text-white mb-6">{pageT.ctaTitle}</h2>
             <p className="text-xl text-slate-400 mb-10">{pageT.ctaSubtitle}</p>
-            <Link href={`/${langKey}/?role=partner#registration-form`} className="inline-block bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-black py-5 px-12 rounded-full transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(16,185,129,0.4)] text-lg uppercase tracking-widest">
+            {/* Изменена ссылка на action-container */}
+            <a href={`/${langKey}/?role=partner#action-container`} className="inline-block bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-black py-5 px-12 rounded-full transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(16,185,129,0.4)] text-lg uppercase tracking-widest">
               {pageT.ctaBtn}
-            </Link>
+            </a>
           </div>
         </section>
 

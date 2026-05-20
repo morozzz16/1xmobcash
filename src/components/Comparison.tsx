@@ -1,7 +1,35 @@
+'use client';
+
 import React from 'react';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export default function Comparison({ t }: { t: any }) {
+  const router = useRouter();
+
+  // Единая функция для плавного скролла и обновления роли
+  const scrollToAction = (e: React.MouseEvent<HTMLAnchorElement>, role: string) => {
+    e.preventDefault();
+    
+    // Обновляем URL без перезагрузки страницы (чтобы форма ниже поймала роль)
+    router.push(`?role=${role}`, { scroll: false });
+
+    // Плавный скролл к блоку MyManager с учетом отступа под шапку (80px)
+    setTimeout(() => {
+      // Ищем контейнер с MyManager
+      let element = document.getElementById('action-container');
+      
+      // На всякий случай (fallback), если контейнера нет, ищем саму форму
+      if (!element) {
+        element = document.getElementById('registration-form');
+      }
+
+      if (element) {
+        const y = element.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    }, 50);
+  };
+
   return (
     <section className="py-20 border-t border-white/5 relative overflow-hidden">
       
@@ -16,8 +44,9 @@ export default function Comparison({ t }: { t: any }) {
         <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
           
           {/* Карточка 1: Агент */}
-          <Link 
-            href="?role=agent#registration-form"
+          <a 
+            href="?role=agent"
+            onClick={(e) => scrollToAction(e, 'agent')}
             className="group block cursor-pointer bg-[#0f172a]/80 backdrop-blur-md border-2 border-emerald-500/40 rounded-3xl p-8 shadow-[0_0_40px_rgba(16,185,129,0.1)] relative transition-all duration-300 hover:shadow-[0_0_60px_rgba(16,185,129,0.3)] hover:-translate-y-2 active:scale-95"
           >
             <div className="absolute top-0 right-8 -translate-y-1/2 bg-gradient-to-r from-emerald-600 to-emerald-500 text-white text-xs font-bold uppercase tracking-widest py-1.5 px-4 rounded-full shadow-[0_0_15px_rgba(16,185,129,0.4)] group-hover:scale-105 transition-transform">
@@ -32,11 +61,12 @@ export default function Comparison({ t }: { t: any }) {
               <li className="flex items-start gap-3"><span className="text-emerald-500 font-bold mt-0.5">✓</span><span className="text-slate-200 font-medium">{t.comparison.agentComm}</span></li>
               <li className="flex items-start gap-3"><span className="text-emerald-500 font-bold mt-0.5">✓</span><span className="text-slate-200 font-medium">{t.comparison.agentTools}</span></li>
             </ul>
-          </Link>
+          </a>
 
           {/* Карточка 2: Партнер */}
-          <Link 
-            href="?role=partner#registration-form"
+          <a 
+            href="?role=partner"
+            onClick={(e) => scrollToAction(e, 'partner')}
             className="group block cursor-pointer bg-[#0f172a]/80 backdrop-blur-md border-2 border-[rgb(20,160,255)]/40 rounded-3xl p-8 shadow-[0_0_40px_rgba(20,160,255,0.1)] relative transition-all duration-300 hover:shadow-[0_0_60px_rgba(20,160,255,0.3)] hover:-translate-y-2 active:scale-95"
           >
             <div className="absolute top-0 right-8 -translate-y-1/2 bg-[rgb(20,160,255)] text-white text-xs font-bold uppercase tracking-widest py-1.5 px-4 rounded-full shadow-[0_0_15px_rgba(20,160,255,0.4)] group-hover:scale-105 transition-transform">
@@ -51,7 +81,7 @@ export default function Comparison({ t }: { t: any }) {
               <li className="flex items-start gap-3"><span className="text-[rgb(20,160,255)] font-bold mt-0.5">✓</span><span className="text-slate-200 font-medium">{t.comparison.partnerComm}</span></li>
               <li className="flex items-start gap-3"><span className="text-[rgb(20,160,255)] font-bold mt-0.5">✓</span><span className="text-slate-200 font-medium">{t.comparison.partnerTools}</span></li>
             </ul>
-          </Link>
+          </a>
 
         </div>
       </div>

@@ -65,7 +65,7 @@ export default async function AgentPage({ params }: { params: Promise<{ lang: st
   const { lang } = await params;
   const langKey = (lang as keyof typeof dictionaries) || 'en';
   const t = dictionaries[langKey] || dictionaries['en'];
-  const pageT = t?.agentPage || dictionaries['en']?.agentPage || defaultAgentPage;
+  const pageT: any = t?.agentPage || dictionaries['en']?.agentPage || defaultAgentPage; // Добавлено :any для надежности TypeScript
 
   return (
     <div className="min-h-screen bg-[#070b14] text-slate-200 font-sans flex flex-col selection:bg-blue-600 selection:text-white">
@@ -92,9 +92,10 @@ export default async function AgentPage({ params }: { params: Promise<{ lang: st
             </p>
             
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-              <Link href={`/${langKey}/?role=agent#registration-form`} className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-black py-4 px-10 rounded-2xl shadow-[0_0_30px_rgba(37,99,235,0.3)] transition-all transform hover:scale-[1.02] active:scale-100 uppercase tracking-widest text-sm text-center">
+              {/* Обновленная ссылка: ведет на главную с параметрами role=agent и скроллом к action-container */}
+              <a href={`/${langKey}/?role=agent#action-container`} className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-black py-4 px-10 rounded-2xl shadow-[0_0_30px_rgba(37,99,235,0.3)] transition-all transform hover:scale-[1.02] active:scale-100 uppercase tracking-widest text-sm text-center">
                 {pageT.btnApply}
-              </Link>
+              </a>
               <a href="#benefits" className="w-full sm:w-auto bg-[#1e293b]/80 hover:bg-[#1e293b] border border-white/10 text-white font-bold py-4 px-10 rounded-2xl transition-all uppercase tracking-widest text-sm text-center">
                 {pageT.btnLearn}
               </a>
@@ -239,9 +240,10 @@ export default async function AgentPage({ params }: { params: Promise<{ lang: st
           <div className="container max-w-4xl mx-auto px-4 relative z-10 text-center bg-gradient-to-b from-[#0f172a] to-[#0a0f1c] p-12 rounded-[3rem] border border-blue-500/20 shadow-[0_0_50px_rgba(37,99,235,0.1)]">
             <h2 className="text-4xl md:text-5xl font-black text-white mb-6">{pageT.ctaTitle}</h2>
             <p className="text-xl text-slate-400 mb-10">{pageT.ctaSubtitle}</p>
-            <Link href={`/${langKey}/?role=agent#registration-form`} className="inline-block bg-blue-600 hover:bg-blue-500 text-white font-black py-5 px-12 rounded-full transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(37,99,235,0.4)] text-lg uppercase tracking-widest">
+            {/* Обновленная ссылка: ведет на главную с параметрами role=agent и скроллом к action-container */}
+            <a href={`/${langKey}/?role=agent#action-container`} className="inline-block bg-blue-600 hover:bg-blue-500 text-white font-black py-5 px-12 rounded-full transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(37,99,235,0.4)] text-lg uppercase tracking-widest">
               {pageT.ctaBtn}
-            </Link>
+            </a>
           </div>
         </section>
 
