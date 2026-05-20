@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import AosInit from "@/components/AosInit";
 import { Inter } from "next/font/google";
-import TelegramWidget from "@/components/TelegramWidget";
+// import TelegramWidget from "@/components/TelegramWidget";
 import "../globals.css";
 import Script from 'next/script';
 
@@ -126,7 +126,7 @@ export default async function RootLayout({
         {children}
 
         {/* Наш плавающий виджет Telegram */}
-        <TelegramWidget />
+ {/*       <TelegramWidget /> */}
 
         <AosInit />
       </body>
