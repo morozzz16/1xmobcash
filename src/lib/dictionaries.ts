@@ -110,7 +110,13 @@ export const dictionaries = {
   // 🇬🇧 ENGLISH (en)
   // ==========================================
   en: { 
-    nav: { agents: "For Agents", partners: "For Partners", blog: "Blog" },
+    nav: { 
+      agents: "For Agents",
+      partners: "For Partners",
+      blog: "Blog",
+      myManager: "MyManager App",
+      secure: "100% Secure"
+    },
     hero: { 
       title: "Earn with the Global iGaming Leader",
       subtitle: "Join the most extensive affiliate network. We provide all the tools for your financial growth with zero starting investment.", 
@@ -420,7 +426,13 @@ export const dictionaries = {
   // 🇫🇷 FRENCH (fr)
   // ==========================================
   fr: { 
-    nav: { agents: "Pour les Agents", partners: "Pour les Partenaires", blog: "Blog" },
+    nav: { 
+      agents: "Pour les Agents",
+      partners: "Pour les Partenaires",
+      blog: "Blog",
+      myManager: "App MyManager",
+      secure: "100% Sécurisé"
+    },
     hero: { 
       title: "Gagnez avec le leader mondial du iGaming", 
       subtitle: "Rejoignez le réseau d'affiliation le plus étendu. Nous fournissons tous les outils pour votre croissance financière sans investissement de départ.", 
@@ -727,7 +739,13 @@ export const dictionaries = {
   // 🇪🇸 SPANISH (es)
   // ==========================================
   es: { 
-    nav: { agents: "Para Agentes", partners: "Para Socios", blog: "Blog" },
+    nav: { 
+      agents: "Para Agentes",
+      partners: "Para Socios",
+      blog: "Blog",
+      myManager: "App MyManager",
+      secure: "100% Seguro"
+    },
     hero: { 
       title: "Gana con el líder mundial del iGaming", 
       subtitle: "Únete a la red de afiliados más extensa. Proporcionamos todas las herramientas para tu crecimiento financiero sin inversión inicial.",
@@ -1034,7 +1052,13 @@ export const dictionaries = {
   // 🇦🇪 ARABIC (ar)
   // ==========================================
   ar: { 
-    nav: { agents: "للوكلاء", partners: "للشركاء", blog: "المدونة" },
+    nav: { 
+      agents: "للوكلاء",
+      partners: "للشركاء",
+      blog: "المدونة",
+      myManager: "تطبيق MyManager",
+      secure: "آمن 100%"
+    },
     hero: { 
       title: "اربح مع الرائد عالمياً في iGaming", 
       subtitle: "انضم إلى شبكة الشركاء الأوسع. نحن نقدم جميع الأدوات لنموك المالي بدون استثمار أولي.",
@@ -1343,7 +1367,13 @@ export const dictionaries = {
   // 🇮🇳 HINDI (hi)
   // ==========================================
   hi: { 
-    nav: { agents: "एजेंटों के लिए", partners: "पार्टनर्स के लिए", blog: "ब्लॉग" },
+    nav: { 
+      agents: "एजेंटों के लिए",
+      partners: "पार्टनर्स के लिए",
+      blog: "ब्लॉग",
+      myManager: "MyManager ऐप",
+      secure: "100% सुरक्षित"
+    },
     hero: { 
       title: "ग्लोबल iGaming लीडर के साथ कमाएं", 
       subtitle: "सबसे व्यापक एफिलिएट नेटवर्क से जुड़ें। हम बिना किसी शुरुआती निवेश के आपके वित्तीय विकास के लिए सभी उपकरण प्रदान करते हैं।",

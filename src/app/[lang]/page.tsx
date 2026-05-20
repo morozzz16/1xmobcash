@@ -7,6 +7,7 @@ import Header from '@/components/Header';
 import HeroForm from '@/components/HeroForm';
 import HomeStats from '@/components/HomeStats';
 import Footer from '@/components/Footer';
+import MyManagerCTA from "@/components/MyManagerCTA";
 
 // НИЖЕ СКРОЛЛА
 const HowItWorks = dynamic(() => import('@/components/HowItWorks'));
@@ -41,8 +42,11 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
         {/* 2. Блок платежных систем */}
         <HomePayments t={t} />
 
+        <MyManagerCTA t={t} />
+
         <Comparison t={t} />
         
+
         <FeaturesSEO t={t} />
 
         {/* 3. Блок Гео-охвата */}

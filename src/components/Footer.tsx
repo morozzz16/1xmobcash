@@ -27,18 +27,35 @@ export default function Footer({ langKey, t }: { langKey: string, t: any }) {
               {f.legalTitle || "Legal & Info"}
             </h4>
             <ul className="space-y-3">
+              {/* НОВАЯ КНОПКА: MyManager (Футер) */}
               <li>
-                <Link href={`/${langKey}/terms`} className="text-slate-400 hover:text-blue-400 transition-colors text-sm">
+                <a 
+                  href="https://my-manager.1xjobs.com/login" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors text-sm font-semibold"
+                >
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"></path>
+                  </svg>
+                  {t.nav?.myManager || "MyManager App"}
+                  <span className="text-[9px] uppercase bg-blue-600 text-white px-1.5 py-0.5 rounded-sm">
+                    {t.nav?.secure || "Secure"}
+                  </span>
+                </a>
+              </li>
+              <li>
+                <Link href={`/${langKey}/terms`} className="text-slate-400 hover:text-white transition-colors text-sm">
                   {f.links?.terms || "Terms & Conditions"}
                 </Link>
               </li>
               <li>
-                <Link href={`/${langKey}/privacy`} className="text-slate-400 hover:text-blue-400 transition-colors text-sm">
+                <Link href={`/${langKey}/privacy`} className="text-slate-400 hover:text-white transition-colors text-sm">
                   {f.links?.privacy || "Privacy Policy"}
                 </Link>
               </li>
               <li>
-                <Link href={`/${langKey}/cookies`} className="text-slate-400 hover:text-blue-400 transition-colors text-sm">
+                <Link href={`/${langKey}/cookies`} className="text-slate-400 hover:text-white transition-colors text-sm">
                   {f.links?.cookies || "Cookie Policy"}
                 </Link>
               </li>
