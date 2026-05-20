@@ -42,7 +42,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
         {/* 2. Блок платежных систем */}
         <HomePayments t={t} />
 
-        <MyManagerCTA t={t} />
+        <MyManagerCTA t={t} langKey={langKey} />
 
         <Comparison t={t} />
         

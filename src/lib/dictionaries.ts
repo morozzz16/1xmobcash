@@ -298,6 +298,57 @@ export const dictionaries = {
       ctaSubtitle: "Join 100,000+ successful partners worldwide today.",
       ctaBtn: "Register Now"
     },
+
+    myManagerPage: {
+      metaTitle: "MyManager | Secure 1xBet Partner App",
+      metaDescription: "Protect your business from scammers. Direct, verified communication with 1xBet managers.",
+      heroBadge: "Enterprise Security Standard",
+      
+      heroSubtitle: "A closed, verified application solving a critical market pain point. In the iGaming affiliate network niche, messenger fraud is a massive problem. Fake accounts of 'official managers' stealing money or access from beginners are everywhere.",
+      mainCta: "ACCESS SECURE APP",
+      
+      securityTitle: "Security & Scam Protection (Main USP)",
+      securityDesc: "A unique selling proposition. In messengers like Telegram or WhatsApp, anyone can copy a real manager's avatar and username. Inside my-manager.1xjobs.com, this is physically impossible. You are 100% sure you are communicating with an official 1xBet representative.",
+      check1: "Impossible to Fake Profiles",
+      check2: "100% Verified Representatives",
+      check3: "Guaranteed Fund Security",
+      verifiedBadge: "100% Verified",
+      verifiedSub: "Exclusive workspace for 1xBet partners.",
+      
+      featuresTitle: "Core Ecosystem Benefits",
+      
+      f2t: "Direct Channel Without Intermediaries",
+      f2d: "Dialogues: Fast resolution of issues regarding payouts, limits, and technical problems in a 'single window' mode.",
+      f3t: "Project News & Events",
+      f3d: "Users of the app are the first to know about rule changes, maintenance, bonuses, or new GEO launches without leaving their workspace.",
+      f4t: "Personal Promo Codes",
+      f4d: "Receive personal promo codes and exclusive partnership conditions directly from the source.",
+
+      seoTitle: "Official MyManager App for 1xBet Agents and Partners",
+      seoText1: "In the rapidly growing iGaming industry, protecting your affiliate and agent networks is paramount. MyManager is the official, secure workspace designed exclusively for 1xBet partners and mobile cashiers. By completely eliminating the risks associated with third-party messengers like Telegram and WhatsApp, our application ensures that your business communications, financial data, and promotional tools remain 100% protected against phishing and unauthorized access.",
+      seoText2: "Whether you are expanding your mobile cashier network or managing high-volume affiliate traffic, direct access to a verified 1xBet manager provides a critical competitive advantage. Enjoy real-time support for payouts, exclusive promo codes, and instant operational updates in a closed, encrypted ecosystem. Join the professional network of agents today and secure your digital business infrastructure with the ultimate anti-scam solution.",
+
+      stepsMainTitle: "How to register in MyManager?",
+      step1Desc: "Go to the link https://my-manager.1xjobs.com/login . If you already have an account, you can log in to your personal dashboard.",
+      step2Desc: "If you do not have a MyManager account yet, create one by filling in the required fields (First Name, Last Name, Email, Phone Number).",
+      step3Desc: "After registration, be sure to save your login and password, which will be generated automatically. You can also download the application to your mobile device.",
+      step4Desc: "When you first log in to your dashboard, make sure to enable notifications on your device so you don't miss messages and other useful info in MyManager. Wait for a personal manager to be assigned to you.",
+      step5Desc: "Once a 1xBet personal manager is assigned to you, you will be able to fully use the application and communicate with a verified manager in a private chat. Ask questions and get necessary information."
+    },
+    myManager: {
+      badge: "100% Secure",
+      title: "Direct Connection with Your Manager",
+      subtitle: "Protect your business. No Telegram or WhatsApp scammers. Communicate safely through our exclusive, encrypted MyManager app.",
+      ctaButton: "Discover MyManager",
+      chatTitle: "Personal Manager",
+      chatStatus: "Encrypted Connection",
+      chatMsg1: "Hello! Here is your secure workspace. Your traffic data and financial reports are fully protected here.",
+      chatMsg2: "Excellent, thank you! It feels much safer than staying on Telegram.",
+      widget1Title: "Third-Party Apps",
+      widget1Desc: "Telegram/WhatsApp phishing threats blocked.",
+      widget2Title: "1xBet Verification",
+      widget2Desc: "100% Authentic"
+    },
     blogPage: {
       seoTitle: "1xMobCash Blog | News, Updates & Strategies",
       seoDesc: "Stay updated with the latest news, platform updates, and marketing strategies for 1xBet agents and affiliate partners.",
@@ -310,7 +361,7 @@ export const dictionaries = {
       btnBack: "Back to Home"
     },
 
-          seoBlock: {
+    seoBlock: {
       title1: "The Premier iGaming Affiliate Network and Local Cashier Program",
       p1: "Welcome to 1xMobCash, your ultimate gateway to monetizing global sports betting traffic and local iGaming ecosystems. Whether you are looking to become a certified 1xBet agent or aiming to scale your online presence through the official 1xPartners affiliate program, we provide the infrastructure, technology, and liquidity support you need to build a profitable business.",
       title2: "1xBet Agent Program: Start a Risk-Free Betting Franchise",
@@ -610,6 +661,56 @@ export const dictionaries = {
       ctaTitle: "Prêt à développer votre entreprise d'affiliation ?",
       ctaSubtitle: "Rejoignez plus de 100 000 partenaires à succès dès aujourd'hui.",
       ctaBtn: "S'inscrire Maintenant"
+    },
+    myManagerPage: {
+      metaTitle: "MyManager | Application Sécurisée pour Partenaires 1xBet",
+      metaDescription: "Protégez votre entreprise contre les escrocs. Communication directe et vérifiée avec les managers 1xBet.",
+      heroBadge: "Norme de Sécurité d'Entreprise",
+      
+      heroSubtitle: "Une application fermée et vérifiée qui résout un problème majeur du marché. Dans la niche des réseaux d'affiliation iGaming, la fraude sur les messageries est un problème massif. Les faux comptes de 'managers officiels' volant l'argent ou les accès des débutants sont omniprésents.",
+      mainCta: "ACCÉDER À L'APP SÉCURISÉE",
+      
+      securityTitle: "Sécurité et Protection contre les Arnaques (Atout Principal)",
+      securityDesc: "Une proposition de valeur unique. Sur des messageries comme Telegram ou WhatsApp, n'importe qui peut copier la photo et le nom d'utilisateur d'un vrai manager. Dans my-manager.1xjobs.com, c'est physiquement impossible. Vous êtes sûr à 100 % de communiquer avec un représentant officiel de 1xBet.",
+      check1: "Profils Impossibles à Falsifier",
+      check2: "Représentants 100% Vérifiés",
+      check3: "Sécurité des Fonds Garantie",
+      verifiedBadge: "100% Vérifié",
+      verifiedSub: "Espace de travail exclusif pour les partenaires 1xBet.",
+      
+      featuresTitle: "Avantages Clés de l'Écosystème",
+      
+      f2t: "Canal Direct Sans Intermédiaires",
+      f2d: "Dialogues : Résolution rapide des problèmes liés aux paiements, aux limites et aux soucis techniques en mode 'guichet unique'.",
+      f3t: "Actualités du Projet et Événements",
+      f3d: "Les utilisateurs de l'application sont les premiers informés des changements de règles, de la maintenance, des bonus ou des lancements de nouvelles zones géographiques sans quitter leur espace de travail.",
+      f4t: "Codes Promo Personnels",
+      f4d: "Recevez des codes promo personnels et des conditions de partenariat exclusives directement à la source.",
+
+      seoTitle: "Application Officielle MyManager pour les Agents et Partenaires 1xBet",
+      seoText1: "Dans l'industrie de l'iGaming en pleine croissance, la protection de vos réseaux d'affiliation et d'agents est primordiale. MyManager est l'espace de travail officiel et sécurisé conçu exclusivement pour les partenaires 1xBet et les caissiers mobiles. En éliminant complètement les risques liés aux messageries tierces comme Telegram et WhatsApp, notre application garantit que vos communications professionnelles, vos données financières et vos outils promotionnels restent protégés à 100 % contre le phishing et les accès non autorisés.",
+      seoText2: "Que vous développiez votre réseau de caissiers mobiles ou que vous gériez un trafic d'affiliation à fort volume, l'accès direct à un manager 1xBet vérifié offre un avantage concurrentiel essentiel. Bénéficiez d'une assistance en temps réel pour les paiements, de codes promo exclusifs et de mises à jour opérationnelles instantanées dans un écosystème fermé et crypté. Rejoignez le réseau professionnel d'agents dès aujourd'hui et sécurisez votre infrastructure commerciale numérique avec la solution anti-arnaque ultime.",
+
+      stepsMainTitle: "Comment s'inscrire sur MyManager ?",
+      step1Desc: "Allez sur le lien https://my-manager.1xjobs.com/login . Si vous avez déjà un compte, vous pouvez vous connecter à votre tableau de bord personnel.",
+      step2Desc: "Si vous n'avez pas encore de compte MyManager, créez-en un en remplissant les champs requis (Prénom, Nom, Email, Numéro de téléphone).",
+      step3Desc: "Après l'inscription, veillez à conserver votre identifiant et votre mot de passe, qui seront générés automatiquement. Vous pouvez également télécharger l'application sur votre appareil mobile.",
+      step4Desc: "Lors de votre première connexion à votre tableau de bord, assurez-vous d'activer les notifications sur votre appareil afin de ne pas manquer de messages et d'autres informations utiles dans MyManager. Attendez qu'un manager personnel vous soit assigné.",
+      step5Desc: "Une fois qu'un manager personnel 1xBet vous est attribué, vous pourrez utiliser pleinement l'application et communiquer avec un manager vérifié dans un chat privé. Posez des questions et obtenez les informations nécessaires."
+    },
+    myManager: {
+      badge: "100% Sécurisé",
+      title: "Connexion Directe avec Votre Manager",
+      subtitle: "Protégez votre entreprise. Fini les arnaqueurs sur Telegram ou WhatsApp. Communiquez en toute sécurité via notre application exclusive et cryptée MyManager.",
+      ctaButton: "Découvrir MyManager",
+      chatTitle: "Manager Personnel",
+      chatStatus: "Connexion Cryptée",
+      chatMsg1: "Bonjour ! Voici votre espace sécurisé. Vos données de trafic et rapports financiers y sont totalement protégés.",
+      chatMsg2: "Excellent, merci ! C'est beaucoup plus sûr que de rester sur Telegram.",
+      widget1Title: "Applications Tiers",
+      widget1Desc: "Menaces de phishing Telegram/WhatsApp bloquées.",
+      widget2Title: "Vérification 1xBet",
+      widget2Desc: "100% Authentique"
     },
     blogPage: {
       seoTitle: "Blog 1xMobCash | Actualités et Stratégies",
@@ -924,6 +1025,56 @@ export const dictionaries = {
       ctaSubtitle: "Únete a más de 100,000 socios exitosos hoy.",
       ctaBtn: "Regístrate Ahora"
     },
+    myManagerPage: {
+      metaTitle: "MyManager | App Segura para Socios de 1xBet",
+      metaDescription: "Proteja su negocio de estafadores. Comunicación directa y verificada con los gerentes de 1xBet.",
+      heroBadge: "Estándar de Seguridad Empresarial",
+      
+      heroSubtitle: "Una aplicación cerrada y verificada que resuelve un problema crítico del mercado. En el nicho de las redes de afiliados de iGaming, el fraude en mensajería es un problema masivo. Las cuentas falsas de 'gerentes oficiales' que roban dinero o accesos a los principiantes están por todas partes.",
+      mainCta: "ACCEDER A LA APP SEGURA",
+      
+      securityTitle: "Seguridad y Protección contra Estafas (Ventaja Principal)",
+      securityDesc: "Una propuesta de valor única. En mensajerías como Telegram o WhatsApp, cualquiera puede copiar el avatar y nombre de usuario de un gerente real. Dentro de my-manager.1xjobs.com, esto es físicamente imposible. Usted tiene un 100% de certeza de que se está comunicando con un representante oficial de 1xBet.",
+      check1: "Perfiles Imposibles de Falsificar",
+      check2: "Representantes 100% Verificados",
+      check3: "Seguridad de Fondos Garantizada",
+      verifiedBadge: "100% Verificado",
+      verifiedSub: "Espacio de trabajo exclusivo para socios de 1xBet.",
+      
+      featuresTitle: "Beneficios Clave del Ecosistema",
+      
+      f2t: "Canal Directo Sin Intermediarios",
+      f2d: "Diálogos: Resolución rápida de problemas sobre pagos, límites y problemas técnicos en modo de 'ventanilla única'.",
+      f3t: "Noticias del Proyecto y Eventos",
+      f3d: "Los usuarios de la app son los primeros en enterarse de cambios en reglas, mantenimiento, bonos o lanzamientos de nuevas zonas geográficas sin salir de su espacio de trabajo.",
+      f4t: "Códigos Promocionales Personales",
+      f4d: "Reciba códigos promocionales personales y condiciones de asociación exclusivas directamente de la fuente.",
+
+      seoTitle: "Aplicación Oficial MyManager para Agentes y Socios de 1xBet",
+      seoText1: "En la creciente industria del iGaming, proteger sus redes de afiliados y agentes es fundamental. MyManager es el espacio de trabajo oficial y seguro diseñado exclusivamente para los socios y cajeros móviles de 1xBet. Al eliminar por completo los riesgos asociados a mensajerías de terceros como Telegram y WhatsApp, nuestra aplicación garantiza que sus comunicaciones comerciales, datos financieros y herramientas promocionales permanezcan 100% protegidos contra el phishing y el acceso no autorizado.",
+      seoText2: "Ya sea que esté expandiendo su red de cajeros móviles o gestionando un alto volumen de tráfico de afiliados, el acceso directo a un gerente verificado de 1xBet proporciona una ventaja competitiva crítica. Disfrute de soporte en tiempo real para pagos, códigos promocionales exclusivos y actualizaciones operativas instantáneas en un ecosistema cerrado y encriptado. Únase a la red profesional de agentes hoy mismo y asegure su infraestructura de negocios digitales con la solución definitiva contra el fraude.",
+
+      stepsMainTitle: "¿Cómo registrarse en MyManager?",
+      step1Desc: "Vaya al enlace https://my-manager.1xjobs.com/login . Si ya tiene una cuenta, puede iniciar sesión en su panel personal.",
+      step2Desc: "Si aún no tiene una cuenta de MyManager, cree una rellenando los campos obligatorios (Nombre, Apellidos, Correo electrónico, Número de teléfono).",
+      step3Desc: "Después del registro, asegúrese de guardar su usuario y contraseña, que se generarán automáticamente. También puede descargar la aplicación en su dispositivo móvil.",
+      step4Desc: "Al iniciar sesión en su panel por primera vez, asegúrese de activar las notificaciones en su dispositivo para no perderse mensajes y otra información útil en MyManager. Espere a que se le asigne un gerente personal.",
+      step5Desc: "Una vez que se le asigne un gerente personal de 1xBet, podrá utilizar completamente la aplicación y comunicarse con un gerente verificado en un chat privado. Haga preguntas y obtenga la información necesaria."
+    },
+    myManager: {
+      badge: "100% Seguro",
+      title: "Conexión Directa con su Gerente",
+      subtitle: "Proteja su negocio. Sin estafadores de Telegram o WhatsApp. Comuníquese de forma segura a través de nuestra exclusiva aplicación cifrada MyManager.",
+      ctaButton: "Descubrir MyManager",
+      chatTitle: "Gerente Personal",
+      chatStatus: "Conexión Cifrada",
+      chatMsg1: "¡Hola! Aquí está su espacio seguro. Sus datos de tráfico y reportes financieros están totalmente protegidos aquí.",
+      chatMsg2: "¡Excelente, gracias! Se siente mucho más seguro que quedarse en Telegram.",
+      widget1Title: "Apps de Terceros",
+      widget1Desc: "Amenazas de phishing de Telegram/WhatsApp bloqueadas.",
+      widget2Title: "Verificación 1xBet",
+      widget2Desc: "100% Auténtico"
+    },
     blogPage: {
       seoTitle: "Blog de 1xMobCash | Noticias y Estrategias",
       seoDesc: "Mantente actualizado con las últimas noticias y estrategias para agentes y socios de 1xBet.",
@@ -1236,6 +1387,56 @@ export const dictionaries = {
       ctaTitle: "هل أنت مستعد لتوسيع نطاق عملك؟",
       ctaSubtitle: "انضم إلى أكثر من 100,000 شريك ناجح اليوم.",
       ctaBtn: "سجل الآن"
+    },
+    myManagerPage: {
+      metaTitle: "MyManager | تطبيق آمن لشركاء 1xBet",
+      metaDescription: "احمِ عملك من المحتالين. تواصل مباشر وموثق مع مديري 1xBet.",
+      heroBadge: "معيار أمان المؤسسات",
+      
+      heroSubtitle: "تطبيق مغلق وموثق يحل مشكلة حرجة في السوق. في مجال شبكات التسويق بالعمولة (iGaming)، يعتبر الاحتيال عبر تطبيقات المراسلة مشكلة هائلة. الحسابات المزيفة لـ 'المديرين الرسميين' التي تسرق الأموال أو بيانات الوصول من المبتدئين موجودة في كل مكان.",
+      mainCta: "الوصول للتطبيق الآمن",
+      
+      securityTitle: "الأمان والحماية من الاحتيال (الميزة التنافسية الأساسية)",
+      securityDesc: "ميزة تنافسية فريدة. في تطبيقات المراسلة مثل تيليجرام أو واتساب، يمكن لأي شخص نسخ صورة واسم مستخدم المدير الحقيقي. داخل my-manager.1xjobs.com، هذا مستحيل فعليًا. أنت متأكد بنسبة 100% أنك تتواصل مع ممثل رسمي لـ 1xBet.",
+      check1: "يستحيل تزييف الحسابات",
+      check2: "ممثلون موثقون بنسبة 100%",
+      check3: "أمان مضمون للأموال",
+      verifiedBadge: "موثق 100%",
+      verifiedSub: "مساحة عمل حصرية لشركاء 1xBet.",
+      
+      featuresTitle: "الفوائد الأساسية للنظام البيئي",
+      
+      f2t: "قناة مباشرة بدون وسطاء",
+      f2d: "المحادثات: حل سريع للمشكلات المتعلقة بالمدفوعات، الحدود، والمشاكل التقنية في وضع 'النافذة الواحدة'.",
+      f3t: "أخبار وأحداث المشروع",
+      f3d: "مستخدمو التطبيق هم أول من يعلم بتغييرات القواعد، الصيانة، المكافآت، أو إطلاق مناطق جغرافية جديدة دون مغادرة مساحة عملهم.",
+      f4t: "أكواد ترويجية شخصية",
+      f4d: "احصل على أكواد ترويجية شخصية وشروط شراكة حصرية مباشرة من المصدر.",
+
+      seoTitle: "تطبيق MyManager الرسمي لوكلاء وشركاء 1xBet",
+      seoText1: "في صناعة الـ iGaming سريعة النمو، تعتبر حماية شبكات الوكلاء والشركاء التابعين لك أمرًا بالغ الأهمية. MyManager هو مساحة العمل الرسمية والآمنة المصممة حصريًا لشركاء 1xBet وأصحاب المحافظ (الكاشير) المتنقلة. من خلال القضاء التام على المخاطر المرتبطة بتطبيقات المراسلة الخارجية مثل تيليجرام وواتساب، يضمن تطبيقنا بقاء اتصالات عملك، وبياناتك المالية، وأدواتك الترويجية محمية بنسبة 100% ضد التصيد الاحتيالي والوصول غير المصرح به.",
+      seoText2: "سواء كنت تقوم بتوسيع شبكة الكاشير المتنقل الخاصة بك أو إدارة حجم كبير من حركة زيارات التسويق بالعمولة، فإن الوصول المباشر إلى مدير 1xBet موثق يوفر ميزة تنافسية حاسمة. استمتع بدعم فوري للمدفوعات، وأكواد ترويجية حصرية، وتحديثات تشغيلية فورية في نظام بيئي مغلق ومشفر. انضم إلى الشبكة المهنية للوكلاء اليوم وقم بتأمين البنية التحتية لأعمالك الرقمية مع الحل النهائي المضاد للاحتيال.",
+
+      stepsMainTitle: "كيفية التسجيل في MyManager؟",
+      step1Desc: "انتقل إلى الرابط https://my-manager.1xjobs.com/login . إذا كان لديك حساب بالفعل، يمكنك تسجيل الدخول إلى لوحة التحكم الشخصية الخاصة بك.",
+      step2Desc: "إذا لم يكن لديك حساب في MyManager حتى الآن، فقم بإنشاء حساب عن طريق ملء الحقول المطلوبة (الاسم الأول، اسم العائلة، البريد الإلكتروني، رقم الهاتف).",
+      step3Desc: "بعد التسجيل، تأكد من حفظ اسم المستخدم وكلمة المرور، والتي سيتم إنشاؤها تلقائيًا. يمكنك أيضًا تنزيل التطبيق على جهازك المحمول.",
+      step4Desc: "عند تسجيل الدخول إلى لوحة التحكم لأول مرة، تأكد من تفعيل الإشعارات على جهازك حتى لا تفوتك الرسائل والمعلومات المفيدة الأخرى في MyManager. انتظر حتى يتم تعيين مدير شخصي لك.",
+      step5Desc: "بمجرد تعيين مدير شخصي من 1xBet لك، ستتمكن من استخدام التطبيق بالكامل والتواصل مع مدير موثق في دردشة خاصة. اطرح الأسئلة واحصل على المعلومات الضرورية."
+    },
+    myManager: {
+      badge: "آمن 100%",
+      title: "اتصال مباشر مع مديرك",
+      subtitle: "احمِ عملك. لا يوجد محتالون عبر تيليجرام أو واتساب. تواصل بأمان من خلال تطبيق MyManager الحصري والمشفر.",
+      ctaButton: "اكتشف MyManager",
+      chatTitle: "المدير الشخصي",
+      chatStatus: "اتصال مشفر",
+      chatMsg1: "مرحباً! هذه هي مساحة العمل الآمنة الخاصة بك. بيانات الزيارات والتقارير المالية محمية بالكامل هنا.",
+      chatMsg2: "ممتاز، شكراً لك! أشعر بأمان أكبر بكثير من البقاء على تيليجرام.",
+      widget1Title: "تطبيقات خارجية",
+      widget1Desc: "تم حظر تهديدات التصيد عبر تيليجرام/واتساب.",
+      widget2Title: "توثيق 1xBet",
+      widget2Desc: "أصلي 100%"
     },
     blogPage: {
       seoTitle: "مدونة 1xMobCash | الأخبار والاستراتيجيات",
@@ -1551,6 +1752,56 @@ export const dictionaries = {
       ctaTitle: "क्या आप अपने एफिलिएट व्यवसाय को बढ़ाने के लिए तैयार हैं?",
       ctaSubtitle: "आज ही 100,000+ सफल पार्टनर्स से जुड़ें।",
       ctaBtn: "अभी रजिस्टर करें"
+    },
+    myManagerPage: {
+      metaTitle: "MyManager | सुरक्षित 1xBet पार्टनर ऐप",
+      metaDescription: "अपने व्यवसाय को स्कैमर्स से बचाएं। 1xBet प्रबंधकों के साथ सीधा, सत्यापित संचार।",
+      heroBadge: "एंटरप्राइज़ सुरक्षा मानक",
+      
+      heroSubtitle: "एक बंद, सत्यापित एप्लिकेशन जो बाज़ार की एक महत्वपूर्ण समस्या का समाधान करता है। iGaming सहबद्ध (affiliate) नेटवर्क आला में, मैसेंजर धोखाधड़ी एक बड़ी समस्या है। 'आधिकारिक प्रबंधकों' के नकली खाते जो शुरुआती लोगों से पैसे या एक्सेस चुराते हैं, हर जगह हैं।",
+      mainCta: "सुरक्षित ऐप एक्सेस करें",
+      
+      securityTitle: "सुरक्षा और स्कैम से बचाव (मुख्य विशेषता)",
+      securityDesc: "एक अनूठा प्रस्ताव। टेलीग्राम या व्हाट्सएप जैसे मैसेंजर में, कोई भी असली मैनेजर का अवतार और यूजरनेम कॉपी कर सकता है। my-manager.1xjobs.com के अंदर, यह भौतिक रूप से असंभव है। आप 100% आश्वस्त हैं कि आप एक आधिकारिक 1xBet प्रतिनिधि से संवाद कर रहे हैं।",
+      check1: "नकली प्रोफाइल बनाना असंभव",
+      check2: "100% सत्यापित प्रतिनिधि",
+      check3: "गारंटीकृत फंड सुरक्षा",
+      verifiedBadge: "100% सत्यापित",
+      verifiedSub: "1xBet भागीदारों के लिए विशेष कार्यक्षेत्र।",
+      
+      featuresTitle: "प्रमुख इकोसिस्टम लाभ",
+      
+      f2t: "बिचौलियों के बिना सीधा चैनल",
+      f2d: "संवाद: 'सिंगल विंडो' मोड में भुगतान, सीमा (लिमिट्स) और तकनीकी समस्याओं से संबंधित मुद्दों का त्वरित समाधान।",
+      f3t: "प्रोजेक्ट समाचार और इवेंट्स",
+      f3d: "ऐप के उपयोगकर्ताओं को अपने कार्यक्षेत्र को छोड़े बिना नियमों में बदलाव, मेंटेनेंस, बोनस या नए जियो लॉन्च के बारे में जानने वाले पहले व्यक्ति होते हैं।",
+      f4t: "व्यक्तिगत प्रोमो कोड",
+      f4d: "सीधे स्रोत से व्यक्तिगत प्रोमो कोड और विशेष साझेदारी शर्तें प्राप्त करें।",
+
+      seoTitle: "1xBet एजेंटों और भागीदारों के लिए आधिकारिक MyManager ऐप",
+      seoText1: "तेजी से बढ़ते iGaming उद्योग में, अपने सहबद्ध (affiliate) और एजेंट नेटवर्क की सुरक्षा करना सर्वोपरि है। MyManager विशेष रूप से 1xBet भागीदारों और मोबाइल कैशियर के लिए डिज़ाइन किया गया आधिकारिक, सुरक्षित कार्यक्षेत्र है। टेलीग्राम और व्हाट्सएप जैसे थर्ड-पार्टी मैसेंजर से जुड़े जोखिमों को पूरी तरह से समाप्त करके, हमारा एप्लिकेशन यह सुनिश्चित करता है कि आपके व्यावसायिक संचार, वित्तीय डेटा और प्रचार उपकरण फ़िशिंग और अनधिकृत एक्सेस से 100% सुरक्षित रहें।",
+      seoText2: "चाहे आप अपने मोबाइल कैशियर नेटवर्क का विस्तार कर रहे हों या उच्च-मात्रा वाले सहबद्ध ट्रैफ़िक का प्रबंधन कर रहे हों, एक सत्यापित 1xBet प्रबंधक तक सीधी पहुंच एक महत्वपूर्ण प्रतिस्पर्धात्मक लाभ प्रदान करती है। एक बंद, एन्क्रिप्टेड इकोसिस्टम में भुगतान के लिए रीयल-टाइम समर्थन, विशेष प्रोमो कोड और तत्काल परिचालन अपडेट का आनंद लें। आज ही एजेंटों के पेशेवर नेटवर्क में शामिल हों और अंतिम एंटी-स्कैम समाधान के साथ अपने डिजिटल बिजनेस इंफ्रास्ट्रक्चर को सुरक्षित करें।",
+
+      stepsMainTitle: "MyManager में पंजीकरण कैसे करें?",
+      step1Desc: "लिंक https://my-manager.1xjobs.com/login पर जाएं। यदि आपका पहले से कोई खाता है, तो आप अपने व्यक्तिगत डैशबोर्ड में लॉग इन कर सकते हैं।",
+      step2Desc: "यदि आपके पास अभी तक MyManager खाता नहीं है, तो आवश्यक फ़ील्ड (प्रथम नाम, अंतिम नाम, ईमेल, फोन नंबर) भरकर एक खाता बनाएं।",
+      step3Desc: "पंजीकरण के बाद, अपने लॉगिन और पासवर्ड को सहेजना सुनिश्चित करें, जो स्वचालित रूप से उत्पन्न होगा। आप अपने मोबाइल डिवाइस पर भी एप्लिकेशन डाउनलोड कर सकते हैं।",
+      step4Desc: "जब आप पहली बार अपने डैशबोर्ड में लॉग इन करते हैं, तो अपने डिवाइस पर नोटिफिकेशन चालू करना सुनिश्चित करें ताकि आप MyManager में संदेश और अन्य उपयोगी जानकारी न चूकें। आपको एक व्यक्तिगत प्रबंधक सौंपे जाने की प्रतीक्षा करें।",
+      step5Desc: "एक बार 1xBet व्यक्तिगत प्रबंधक आपको सौंप दिए जाने के बाद, आप पूरी तरह से एप्लिकेशन का उपयोग कर सकेंगे और एक निजी चैट में सत्यापित प्रबंधक के साथ संवाद कर सकेंगे। प्रश्न पूछें और आवश्यक जानकारी प्राप्त करें।"
+    },
+    myManager: {
+      badge: "100% सुरक्षित",
+      title: "अपने मैनेजर के साथ सीधा संपर्क",
+      subtitle: "अपने व्यवसाय की रक्षा करें। कोई टेलीग्राम या व्हाट्सएप स्कैमर नहीं। हमारे विशेष, एन्क्रिप्टेड MyManager ऐप के माध्यम से सुरक्षित रूप से संवाद करें।",
+      ctaButton: "MyManager खोजें",
+      chatTitle: "व्यक्तिगत प्रबंधक",
+      chatStatus: "एन्क्रिप्टेड कनेक्शन",
+      chatMsg1: "नमस्ते! यहाँ आपका सुरक्षित कार्यक्षेत्र है। आपके ट्रैफ़िक डेटा और वित्तीय रिपोर्ट यहाँ पूरी तरह सुरक्षित हैं।",
+      chatMsg2: "बहुत बढ़िया, धन्यवाद! यह टेलीग्राम पर रहने से कहीं अधिक सुरक्षित लगता है।",
+      widget1Title: "थर्ड-पार्टी ऐप्स",
+      widget1Desc: "टेलीग्राम/व्हाट्सएप फ़िशिंग खतरे ब्लॉक किए गए।",
+      widget2Title: "1xBet सत्यापन",
+      widget2Desc: "100% प्रामाणिक"
     },
     blogPage: {
       seoTitle: "1xMobCash ब्लॉग | समाचार और रणनीतियाँ",
