@@ -23,7 +23,7 @@ export default async function MyManagerPage({ params }: { params: Promise<{ lang
   const langKey = (lang as keyof typeof dictionaries) || 'en';
   const t = dictionaries[langKey] || dictionaries['en'];
   
-  const p = t.myManagerPage || {};
+  const p: any = t.myManagerPage || {};
 
   const renderTextWithLinks = (text: string) => {
     if (!text) return null;
